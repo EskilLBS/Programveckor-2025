@@ -9,7 +9,7 @@ public class PlayerUnit : UnitBase
     public override void Attack()
     {
         CombatManager.Instance.currentTarget.TakeDamage(damage);
-        Debug.Log(CombatManager.Instance.currentTarget.health);
+        Debug.Log(CombatManager.Instance.currentTarget.name + ": " + CombatManager.Instance.currentTarget.health);
     }
 
     // Start is called before the first frame update
