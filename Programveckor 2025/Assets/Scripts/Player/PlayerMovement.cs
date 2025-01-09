@@ -20,25 +20,25 @@ public class PlayerMovement : MonoBehaviour
         rigidbody.velocity = new Vector2(0, 0);
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            //Flyttar spelaren till höger
+            //Moves player to the right
             rigidbody.velocity = new Vector2(1, rigidbody.velocity.y).normalized * speed;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            //Flyttar spelaren till vänster
+            //Moves the player to the left
             rigidbody.velocity = new Vector2(-1, rigidbody.velocity.y).normalized * speed;
         }
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            //Flyttar spelaren uppåt
+            //Moves player up
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, 1).normalized * speed;
         }
 
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            //Flyttar spelaren nedåt
+            //Moves player down
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, - 1).normalized * speed;
         }
     }
