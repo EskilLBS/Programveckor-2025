@@ -20,7 +20,7 @@ public class BadOrGoodDecision : MonoBehaviour
     public void GoodDecision()
     {
         goodness += 1;
-        print("Det vat ett bra val!");
+        print("Det var ett bra val!");
 
         if (goodness >= 4)
         {
