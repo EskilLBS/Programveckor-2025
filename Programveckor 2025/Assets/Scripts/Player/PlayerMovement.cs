@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rigidbody;
-    public int speed;
+    public int speed = 5;
+
+    [SerializeField] bool topDownMovement;
+    bool grounded;
+    [SerializeField] GameObject groundCheck;
+
+    public bool pauseMovement { get; private set; }
 
     // Start is called before the first frame update
     void Start()
@@ -17,8 +24,35 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rigidbody.velocity = new Vector2(0, 0);
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (!pauseMovement)
+        {
+            if (topDownMovement)
+            {
+                rigidbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * speed;
+            }
+            else
+            {
+                rigidbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rigidbody.velocity.y);
+
+                if (Input.GetKeyDown(KeyCode.Space) && grounded)
+                {
+                    grounded = false;
+                    rigidbody.AddForce(transform.up * speed, ForceMode2D.Impulse);
+                }
+            }
+        }
+        else
+        {
+            rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
+        }
+
+        RaycastHit2D[] hit = Physics2D.CircleCastAll(groundCheck.transform.position, 0.5f, groundCheck.transform.position, 0, 3);
+        if(hit.Length > 0)
+        {
+            grounded = true;
+        }
+        
+        /*if (Input.GetKey(KeyCode.RightArrow))
         {
             //Moves player to the right
             rigidbody.velocity = new Vector2(1, rigidbody.velocity.y).normalized * speed;
@@ -40,6 +74,11 @@ public class PlayerMovement : MonoBehaviour
         {
             //Moves player down
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, - 1).normalized * speed;
-        }
+        }*/
+    }
+
+    public void SetPauseMovement(bool state)
+    {
+        pauseMovement = state;
     }
 }
