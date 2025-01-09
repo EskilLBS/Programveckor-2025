@@ -33,7 +33,10 @@ public class CombatManager : MonoBehaviour
     [SerializeField] List<EnemyUnit> enemyCharacters;
     // The current enemy character
     EnemyUnit currentEnemyUnit;
+    // A marker on the current target to show which unit is targeted
     GameObject currentTargetMarker;
+
+    [SerializeField] PlayerMovement playerMovement;
 
     [SerializeField] GameObject playerAttackUI;
 
@@ -81,6 +84,8 @@ public class CombatManager : MonoBehaviour
         {
             currentTarget = enemyCharacters[0];
         }
+
+        playerMovement.SetPauseMovement(true);
 
         StartCoroutine(PlayerTurn());
     }
@@ -147,6 +152,8 @@ public class CombatManager : MonoBehaviour
     {
         Debug.Log("You won!");
         currentCombatState = CombatState.OutOfCombat;
+
+        playerMovement.SetPauseMovement(false);
     }
 
     public void SetCurrentTarget(UnitBase unit)
