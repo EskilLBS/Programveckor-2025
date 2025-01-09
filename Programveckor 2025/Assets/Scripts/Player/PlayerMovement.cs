@@ -9,6 +9,10 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rigidbody;
     public int speed = 5;
 
+    [SerializeField] bool topDownMovement;
+    bool grounded;
+    [SerializeField] GameObject groundCheck;
+
     public bool pauseMovement { get; private set; }
 
     // Start is called before the first frame update
@@ -20,7 +24,34 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rigidbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * speed;
+        if (!pauseMovement)
+        {
+            if (topDownMovement)
+            {
+                rigidbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * speed;
+            }
+            else
+            {
+                rigidbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rigidbody.velocity.y);
+
+                if (Input.GetKeyDown(KeyCode.Space) && grounded)
+                {
+                    grounded = false;
+                    rigidbody.AddForce(transform.up * speed, ForceMode2D.Impulse);
+                }
+            }
+        }
+        else
+        {
+            rigidbody.velocity = Vector2.zero;
+        }
+
+        RaycastHit2D[] hit = Physics2D.CircleCastAll(groundCheck.transform.position, 0.5f, groundCheck.transform.position, 0, 3);
+        if(hit.Length > 0)
+        {
+            grounded = true;
+        }
+        
         /*if (Input.GetKey(KeyCode.RightArrow))
         {
             //Moves player to the right

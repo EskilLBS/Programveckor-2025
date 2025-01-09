@@ -61,11 +61,6 @@ public class CombatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentCombatState == CombatState.Start)
-        {
-            CombatStart();
-        }
-
         if(enemyCharacters.Count <= 0)
         {
             currentCombatState = CombatState.Win;
@@ -78,8 +73,10 @@ public class CombatManager : MonoBehaviour
     }
 
     // Set up the start of combat
-    void CombatStart()
+    public void StartCombat()
     {
+        currentCombatState = CombatState.Start;
+
         if (currentTarget == null)
         {
             currentTarget = enemyCharacters[0];
