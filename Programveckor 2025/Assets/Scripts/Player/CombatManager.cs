@@ -178,7 +178,27 @@ public class CombatManager : MonoBehaviour
         currentTargetMarker.transform.position += new Vector3(0, 0, 1);
     }
 
-    public void RemoveEnemy(EnemyUnit enemyToRemove)
+    public void SpareEnemy()
+    {
+        if (currentCombatState == CombatState.PlayerTurn && awaitingPlayerInput == true)
+        {
+
+            if (currentTarget == null)
+            {
+                SetCurrentTarget(enemyCharacters[0]);
+            }
+
+            if(currentTarget.health == 1)
+            {
+                currentTarget.GetComponent<EnemyUnit>().spared = true;
+                RemoveEnemyFromList(currentTarget.GetComponent<EnemyUnit>());
+            }
+
+            awaitingPlayerInput = false;
+        }
+    }
+
+    public void RemoveEnemyFromList(EnemyUnit enemyToRemove)
     {
         if (enemyToRemove == currentTarget)
         {

@@ -6,6 +6,8 @@ public class EnemyUnit : UnitBase
 {
     [SerializeField] int damage;
 
+    [HideInInspector] public bool spared;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,14 +16,18 @@ public class EnemyUnit : UnitBase
 
     public override void Attack()
     {
-        AssignNewAttack(attacks[Random.Range(0, attacks.Count)]);
+        if (!spared)
+        {
+            AssignNewAttack(attacks[Random.Range(0, attacks.Count)]);
 
-        UnitBase currentTarget;
+            UnitBase currentTarget;
 
-        currentTarget = CombatManager.Instance.playerCharacters[Random.Range(0, CombatManager.Instance.playerCharacters.Count)];
+            currentTarget = CombatManager.Instance.playerCharacters[Random.Range(0, CombatManager.Instance.playerCharacters.Count)];
 
-        currentTarget.TakeDamage(currentAttack.damage);
-        Debug.Log(currentTarget.gameObject.name + ": " + currentTarget.health);
+            currentTarget.TakeDamage(currentAttack.damage);
+            Debug.Log(currentTarget.gameObject.name + ": " + currentTarget.health);
+        }
+        
     }
 
     private void OnMouseOver()
@@ -34,7 +40,7 @@ public class EnemyUnit : UnitBase
 
     public override void Die()
     {
-        CombatManager.Instance.RemoveEnemy(this);
+        CombatManager.Instance.RemoveEnemyFromList(this);
         CombatManager.Instance.SetCurrentTarget(null);
 
         Destroy(gameObject);

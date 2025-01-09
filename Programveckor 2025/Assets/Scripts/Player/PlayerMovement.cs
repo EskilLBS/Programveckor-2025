@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
+    public LayerMask groundLayer;
+
     Rigidbody2D rigidbody;
     public int speed = 5;
 
@@ -46,8 +48,9 @@ public class PlayerMovement : MonoBehaviour
             rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
         }
 
-        RaycastHit2D[] hit = Physics2D.CircleCastAll(groundCheck.transform.position, 0.5f, groundCheck.transform.position, 0, 3);
-        if(hit.Length > 0)
+
+        RaycastHit2D hit = Physics2D.CircleCast(groundCheck.transform.position, 0.5f, groundCheck.transform.position, 0.3f, groundLayer);
+        if (hit.collider)
         {
             grounded = true;
         }
