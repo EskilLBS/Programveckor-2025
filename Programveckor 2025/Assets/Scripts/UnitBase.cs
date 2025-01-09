@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class UnitBase : MonoBehaviour
 {
+    public List<AttackBase> attacks;
+    public AttackBase currentAttack;
+
+    [SerializeField] Slider healthBar;
+
     public int maxHealth;
     [HideInInspector] public int health;
 
@@ -15,6 +21,8 @@ public abstract class UnitBase : MonoBehaviour
     public virtual void TakeDamage(int amount)
     {
         health -= amount;
+
+        healthBar.value = health / (float)maxHealth;
 
         if(health <= 0)
         {
@@ -30,5 +38,10 @@ public abstract class UnitBase : MonoBehaviour
     public virtual void Die()
     {
 
+    }
+
+    public virtual void AssignNewAttack(AttackBase newAttack)
+    {
+        currentAttack = newAttack;
     }
 }
