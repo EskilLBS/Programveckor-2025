@@ -61,7 +61,7 @@ public class CombatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(enemyCharacters.Count <= 0)
+        if(enemyCharacters.Count <= 0 && currentCombatState != CombatState.OutOfCombat)
         {
             currentCombatState = CombatState.Win;
         }
@@ -82,6 +82,7 @@ public class CombatManager : MonoBehaviour
             currentTarget = enemyCharacters[0];
         }
 
+        playerAttackUI.SetActive(true);
         playerMovement.SetPauseMovement(true);
 
         StartCoroutine(PlayerTurn());
@@ -147,6 +148,8 @@ public class CombatManager : MonoBehaviour
     // Called when the player wins
     void Win()
     {
+        playerAttackUI.SetActive(false);
+
         Debug.Log("You won!");
         currentCombatState = CombatState.OutOfCombat;
 
