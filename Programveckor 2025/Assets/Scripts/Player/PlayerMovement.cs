@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rigidbody.velocity = Vector2.zero;
+            rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
         }
 
         RaycastHit2D[] hit = Physics2D.CircleCastAll(groundCheck.transform.position, 0.5f, groundCheck.transform.position, 0, 3);

@@ -158,6 +158,11 @@ public class CombatManager : MonoBehaviour
 
     public void SetCurrentTarget(UnitBase unit)
     {  
+        if(currentCombatState == CombatState.OutOfCombat)
+        {
+            return;
+        }
+
         currentTarget = unit;
         Destroy(currentTargetMarker);
 
