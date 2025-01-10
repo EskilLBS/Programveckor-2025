@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: NotSoBasicAttack
   m_EditorClassIdentifier: 
   damage: 4
+  attackName: Better Attack

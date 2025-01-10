@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: BasicAttack
   m_EditorClassIdentifier: 
   damage: 2
+  attackName: Basic Attack

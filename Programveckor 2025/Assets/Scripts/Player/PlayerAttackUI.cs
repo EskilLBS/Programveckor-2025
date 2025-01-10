@@ -27,9 +27,9 @@ public class PlayerAttackUI : MonoBehaviour
 
     public void UpdateOptions()
     {
-        foreach (GameObject child in attackUIParent.transform)
+        foreach (Transform child in attackUIParent.transform)
         {
-            Destroy(child);
+            Destroy(child.gameObject);
         }
 
         currentPlayerUnit = CombatManager.Instance.currentPlayerUnit;
@@ -37,7 +37,7 @@ public class PlayerAttackUI : MonoBehaviour
         foreach (AttackBase attack in currentPlayerUnit.attacks)
         {
             GameObject go = Instantiate(attackUIPrefab);
-            attackUIPrefab.transform.SetParent(attackUIParent.transform);
+            go.transform.SetParent(attackUIParent.transform);
 
             go.GetComponentInChildren<TextMeshProUGUI>().text = attack.attackName;
             go.GetComponent<Button>().onClick.AddListener(() => CombatManager.Instance.AttackWithCurrentPlayerUnit(attack));
