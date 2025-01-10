@@ -1209,6 +1209,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ecfc2bc718525c498ac394b08b8cf2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
   speed: 5
   topDownMovement: 0
   groundCheck: {fileID: 142459958}
