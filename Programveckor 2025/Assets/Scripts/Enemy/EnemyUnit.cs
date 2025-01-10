@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyUnit : UnitBase
 {
-    [SerializeField] int damage;
+    [SerializeField] float damage;
 
     [HideInInspector] public bool spared;
 
