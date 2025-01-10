@@ -37,7 +37,7 @@ public class Interaction : MonoBehaviour
 
         if ((distanceX <= 2f && distanceX >= -2f) && (distanceY <= 2f && distanceY >= -2f))
         {
-            AnimateText("Press E to interact");
+            AnimateText("Hint: Press E to interact");
             if (Input.GetKeyDown(KeyCode.E) && !IsTyping)
             {
                 string dialogueText = CheckLog(CurrentDialogue);
@@ -152,29 +152,12 @@ public class Interaction : MonoBehaviour
         }
         InteractText.alpha = 0f;
     }
-
-
-    //  IEnumerator ScaleUpText(float duration)
-    // {
-    //  InteractText.transform.localScale = Vector3.zero;
-    //Vector3 targetScale = Vector3.one;
-    //float elapsedTime = 0f;
-
-    //while (elapsedTime < duration)
-    //{
-    //  InteractText.transform.localScale = Vector3.Lerp(Vector3.zero, targetScale, elapsedTime / duration);
-    //elapsedTime += Time.deltaTime;
-    //yield return null;
-    // }
-    //InteractText.transform.localScale = targetScale;
-    //}
-
     public string CheckLog(int CurrentDialogue)
     {
         Dictionary<int, string> texts = new Dictionary<int, string>
         {
             {1, "Hello there, it's nice to see you [Press E to continue]" },
-            {2, "We meet again [Press E to continue]" },
+            {2, "I need your help! [Press E to Accept]" },
             {3, "What are you still doing here? get going" }
         };
 
