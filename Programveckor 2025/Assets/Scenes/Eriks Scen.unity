@@ -349,7 +349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687e0a277969f4f459d42031c652f31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badness: 0
 --- !u!114 &712206010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,7 +564,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687e0a277969f4f459d42031c652f31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badness: 0
 --- !u!114 &1397584167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1211,6 +1209,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ecfc2bc718525c498ac394b08b8cf2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
   speed: 5
   topDownMovement: 0
   groundCheck: {fileID: 142459958}
@@ -1338,7 +1339,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
