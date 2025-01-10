@@ -35,7 +35,7 @@ public class Interaction : MonoBehaviour
         distanceX = PlayerBody.transform.position.x - NpcBody.transform.position.x;
         distanceY = PlayerBody.transform.position.y - NpcBody.transform.position.y;
 
-        if ((distanceX <= 2f && distanceX >= -2f) && (distanceY <= 2f && distanceY >= -2f))
+        if ((distanceX <= 2f && distanceX >= -2f) && (distanceY <= 2f && distanceY >= -2f)) //Check distance
         {
             AnimateText("Hint: Press E to interact");
             if (Input.GetKeyDown(KeyCode.E) && !IsTyping)
@@ -98,6 +98,7 @@ public class Interaction : MonoBehaviour
         currentTypingCoroutine = null;
     }
 
+    //End Text (Player left)
     IEnumerator HideText(string playerLeft)
     {
         IsTyping = false;
@@ -113,12 +114,11 @@ public class Interaction : MonoBehaviour
         }
         yield return new WaitForSeconds(1);
         DialogueEndedUi.gameObject.SetActive(false);
-        currentHideTextCoroutine = null;  // Clear reference after finishing
+        currentHideTextCoroutine = null; 
     }
     public void AnimateText(string message)
     {
         ShowText(message);  // Fade-in
-        //StartCoroutine(ScaleUpText(1.0f));
     }
     public void ShowText(string message)
     {
@@ -152,6 +152,8 @@ public class Interaction : MonoBehaviour
         }
         InteractText.alpha = 0f;
     }
+
+    //List of all the dialogues
     public string CheckLog(int CurrentDialogue)
     {
         Dictionary<int, string> texts = new Dictionary<int, string>
