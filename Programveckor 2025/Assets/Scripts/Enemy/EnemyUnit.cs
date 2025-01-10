@@ -54,6 +54,8 @@ public class EnemyUnit : UnitBase
 
         GoodOrBadDecision.Instance.BadDecision(1);
 
+        Experience.Instance.GainExperience(1, 11);
+
         Destroy(gameObject);
     }
 
