@@ -10,8 +10,8 @@ public abstract class UnitBase : MonoBehaviour
 
     [SerializeField] Slider healthBar;
 
-    public int maxHealth;
-    [HideInInspector] public int health;
+    public float maxHealth;
+    [HideInInspector] public float health;
 
     public UnitBase()
     {
@@ -19,11 +19,11 @@ public abstract class UnitBase : MonoBehaviour
     }
 
     [Tooltip("Called when the unit takes damage, by default it subtracts the amount that gets passed in from the player's current health")]
-    public virtual void TakeDamage(int amount)
+    public virtual void TakeDamage(float amount)
     {
         health -= amount;
 
-        healthBar.value = health / (float)maxHealth;
+        healthBar.value = health / maxHealth;
 
         if(health <= 0)
         {

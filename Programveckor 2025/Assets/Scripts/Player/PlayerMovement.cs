@@ -38,10 +38,9 @@ public class PlayerMovement : MonoBehaviour
                 // Get the input on the horizontal axis and use that as a movement vector
                 rigidbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rigidbody.velocity.y);
 
-                if (Input.GetKeyDown(KeyCode.Space) && grounded)
+                if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
                 {
                     // Set grounded to false to ensure that the player can't jump again, and then add force upwards
-                    grounded = false;
                     rigidbody.AddForce(transform.up * speed, ForceMode2D.Impulse);
                 }
             }
@@ -54,39 +53,20 @@ public class PlayerMovement : MonoBehaviour
 
 
         // Check if the player is on the ground
+        
+    }
+
+    bool GroundCheck()
+    {
         RaycastHit2D hit = Physics2D.CircleCast(groundCheck.transform.position, 0.2f, groundCheck.transform.position, 0.3f, groundLayer);
         if (hit.collider)
         {
-            grounded = true;
+            return true;
         }
         else
         {
-            grounded = false;
+            return false;
         }
-        
-        /*if (Input.GetKey(KeyCode.RightArrow))
-        {
-            //Moves player to the right
-            rigidbody.velocity = new Vector2(1, rigidbody.velocity.y).normalized * speed;
-        }
-
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            //Moves the player to the left
-            rigidbody.velocity = new Vector2(-1, rigidbody.velocity.y).normalized * speed;
-        }
-
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            //Moves player up
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x, 1).normalized * speed;
-        }
-
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            //Moves player down
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x, - 1).normalized * speed;
-        }*/
     }
 
     public void SetPauseMovement(bool state)
