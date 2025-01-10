@@ -162,8 +162,6 @@ public class CombatManager : MonoBehaviour
             return;
         }
 
-        Debug.Log(unit.gameObject.name);
-
         currentTarget = unit;
         Destroy(currentTargetMarker);
 

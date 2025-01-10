@@ -52,6 +52,8 @@ public class EnemyUnit : UnitBase
         CombatManager.Instance.RemoveEnemyFromList(this);
         CombatManager.Instance.SetCurrentTarget(null);
 
+        GoodOrBadDecision.Instance.BadDecision(1);
+
         Destroy(gameObject);
     }
 
@@ -60,5 +62,7 @@ public class EnemyUnit : UnitBase
     {
         Destroy(gameObject);
         Destroy(CombatManager.Instance.currentTargetMarker);
+
+        GoodOrBadDecision.Instance.GoodDecision(1);
     }
 }
