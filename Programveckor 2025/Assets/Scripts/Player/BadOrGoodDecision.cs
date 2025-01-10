@@ -7,6 +7,12 @@ public class BadOrGoodDecision : MonoBehaviour
     int badness;
     int goodness;
 
+    void Start()
+    {
+        badness = 0;
+        goodness = 0;
+    }
+
     public void BadDecision()
     {
         badness += 1;
