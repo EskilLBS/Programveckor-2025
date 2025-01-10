@@ -447,6 +447,7 @@ Transform:
   m_Children:
   - {fileID: 160445406}
   - {fileID: 294128273}
+  - {fileID: 993354415}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &195629619
@@ -1205,7 +1206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attacks:
-  - {fileID: 11400000, guid: e3b5a1eb79dc36149aa496d06f97f52d, type: 2}
+  - {fileID: 11400000, guid: 9059e79c2790e0247961f0e5789403fc, type: 2}
   currentAttack: {fileID: 11400000, guid: e3b5a1eb79dc36149aa496d06f97f52d, type: 2}
   healthBar: {fileID: 1634903599}
   maxHealth: 5
@@ -1833,7 +1834,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 195629618}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &993354416
 MonoBehaviour:
@@ -2992,6 +2993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attacks:
   - {fileID: 11400000, guid: e3b5a1eb79dc36149aa496d06f97f52d, type: 2}
+  - {fileID: 11400000, guid: 9059e79c2790e0247961f0e5789403fc, type: 2}
   currentAttack: {fileID: 11400000, guid: e3b5a1eb79dc36149aa496d06f97f52d, type: 2}
   healthBar: {fileID: 556478896}
   maxHealth: 5
@@ -3638,7 +3640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8abe8eb0cac66439ffb0d1b4fcb1bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackUIPrefab: {fileID: 998964960}
+  attackUIPrefab: {fileID: 206945290334542614, guid: 48bc1c413abac03458e44430350bf0cc, type: 3}
   attackUIParent: {fileID: 998964960}
 --- !u!1 &1970506317
 GameObject:
@@ -4163,7 +4165,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 258984686}
   - {fileID: 1978968640}
-  - {fileID: 993354415}
   - {fileID: 195629618}
   - {fileID: 1670342074}
   - {fileID: 574153872}
