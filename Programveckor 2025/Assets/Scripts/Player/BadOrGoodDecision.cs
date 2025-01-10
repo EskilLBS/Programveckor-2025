@@ -18,14 +18,14 @@ public class BadOrGoodDecision : MonoBehaviour
         badness += 1;
         print("Det var ett dåligt val!");
         
-        if (badness == 4)
+        if (badness == 3)
         {
             print("Du har gjort flera dåliga val!!");
         }
 
-        if (badness >= 6)
+        if (badness == 4)
         {
-            print("BOOM!!!!!!!!! Du sprängde jorden");
+            print("BOOM!!!!!!!!! DU SPRÄNGDE VÄRLDEN!");
         }
     }
     public void GoodDecision()
@@ -33,9 +33,14 @@ public class BadOrGoodDecision : MonoBehaviour
         goodness += 1;
         print("Det var ett bra val!");
 
-        if (goodness == 4)
+        if (goodness == 3)
         {
             print("Du har gjort flera bra val!!");
+        }
+
+        if (goodness == 4)
+        {
+            print("DU RÄDDADE VÄRLDEN!!");
         }
     }
 }
