@@ -39,6 +39,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] PlayerMovement playerMovement;
 
     [SerializeField] GameObject playerAttackUI;
+    [SerializeField] GameObject spareButton;
 
     private void Awake()
     {
@@ -102,6 +103,14 @@ public class CombatManager : MonoBehaviour
             currentPlayerUnit.AssignNewAttack(newAttack);
             currentPlayerUnit.Attack();
 
+            if(currentTarget != null)
+            {
+                if (currentTarget.health <= 1)
+                {
+                    spareButton.SetActive(true);
+                }
+            }
+            
 
             awaitingPlayerInput = false;
         }
@@ -171,6 +180,15 @@ public class CombatManager : MonoBehaviour
         if (unit == null)
         {
             return;
+        }
+
+        if(currentTarget.health <= 1)
+        {
+            spareButton.SetActive(true);
+        }
+        else
+        {
+            spareButton.SetActive(false);
         }
        
         currentTargetMarker = Instantiate(new GameObject(), unit.transform.position, Quaternion.identity);
