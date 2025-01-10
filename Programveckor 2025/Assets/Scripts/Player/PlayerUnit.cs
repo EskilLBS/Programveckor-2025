@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class PlayerUnit : UnitBase
 {
-    [SerializeField] int damage;
+    public float attackMult = 1f;
 
     public override void Attack()
     {
         Debug.Log(CombatManager.Instance.currentTarget.name + ": " + (CombatManager.Instance.currentTarget.health - currentAttack.damage));
-        CombatManager.Instance.currentTarget.TakeDamage(currentAttack.damage);
-        
+        CombatManager.Instance.currentTarget.TakeDamage(currentAttack.damage * attackMult);        
     }
 
     // Start is called before the first frame update
