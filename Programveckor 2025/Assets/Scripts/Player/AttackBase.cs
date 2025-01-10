@@ -6,4 +6,5 @@ using UnityEngine;
 public class AttackBase : ScriptableObject
 {
     public int damage;
+    public string attackName = "New Attack";
 }
