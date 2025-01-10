@@ -49,10 +49,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        RaycastHit2D hit = Physics2D.CircleCast(groundCheck.transform.position, 0.5f, groundCheck.transform.position, 0.3f, groundLayer);
+        // Check if the player is on the ground
+        RaycastHit2D hit = Physics2D.CircleCast(groundCheck.transform.position, 0.2f, groundCheck.transform.position, 0.3f, groundLayer);
         if (hit.collider)
         {
             grounded = true;
+        }
+        else
+        {
+            grounded = false;
         }
         
         /*if (Input.GetKey(KeyCode.RightArrow))

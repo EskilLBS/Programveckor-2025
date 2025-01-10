@@ -6,6 +6,9 @@ public class AggroRange : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        CombatManager.Instance.StartCombat();
+        if(collision.tag == "Player")
+        {
+            CombatManager.Instance.StartCombat();
+        }
     }
 }
