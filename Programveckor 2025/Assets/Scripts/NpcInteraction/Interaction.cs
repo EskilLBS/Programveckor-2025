@@ -158,7 +158,7 @@ public class Interaction : MonoBehaviour
         {
             {1, "Hello there, it's nice to see you [Press E to continue]" },
             {2, "I need your help! [Press E to Accept]" },
-            {3, "What are you still doing here? get going" }
+            {3, "What are you still doing here then?? Get going" }
         };
 
         foreach (KeyValuePair<int, string> kvp in texts)
