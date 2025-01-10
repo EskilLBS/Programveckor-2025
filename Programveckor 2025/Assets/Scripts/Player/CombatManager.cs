@@ -25,7 +25,7 @@ public class CombatManager : MonoBehaviour
     // A list of the player characters
     public List<PlayerUnit> playerCharacters;
     // The current player unit that has to attack
-    PlayerUnit currentPlayerUnit;
+    [HideInInspector] public PlayerUnit currentPlayerUnit;
     // The 
     bool awaitingPlayerInput = false;
 
@@ -93,6 +93,7 @@ public class CombatManager : MonoBehaviour
     {
         if (currentCombatState == CombatState.PlayerTurn && awaitingPlayerInput == true)
         {
+           
             if (currentTarget == null)
             {
                 SetCurrentTarget(enemyCharacters[0]);
@@ -116,6 +117,8 @@ public class CombatManager : MonoBehaviour
         foreach (PlayerUnit unit in playerCharacters)
         {
             currentPlayerUnit = unit;
+
+            PlayerAttackUI.Instance.UpdateOptions();
 
             awaitingPlayerInput = true;
 
