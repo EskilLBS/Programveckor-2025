@@ -34,7 +34,7 @@ public class CombatManager : MonoBehaviour
     // The current enemy character
     EnemyUnit currentEnemyUnit;
     // A marker on the current target to show which unit is targeted
-    GameObject currentTargetMarker;
+    [HideInInspector] public GameObject currentTargetMarker { get; private set; }
 
     [SerializeField] PlayerMovement playerMovement;
 
@@ -93,7 +93,6 @@ public class CombatManager : MonoBehaviour
     {
         if (currentCombatState == CombatState.PlayerTurn && awaitingPlayerInput == true)
         {
-
             if (currentTarget == null)
             {
                 SetCurrentTarget(enemyCharacters[0]);
@@ -163,6 +162,8 @@ public class CombatManager : MonoBehaviour
             return;
         }
 
+        Debug.Log(unit.gameObject.name);
+
         currentTarget = unit;
         Destroy(currentTargetMarker);
 
@@ -191,6 +192,7 @@ public class CombatManager : MonoBehaviour
             if(currentTarget.health == 1)
             {
                 currentTarget.GetComponent<EnemyUnit>().spared = true;
+                currentTarget.GetComponent<EnemyUnit>().OnSpared();
                 RemoveEnemyFromList(currentTarget.GetComponent<EnemyUnit>());
             }
 

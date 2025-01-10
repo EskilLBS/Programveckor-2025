@@ -59,5 +59,6 @@ public class EnemyUnit : UnitBase
     public void OnSpared()
     {
         Destroy(gameObject);
+        Destroy(CombatManager.Instance.currentTargetMarker);
     }
 }
