@@ -1289,7 +1289,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -75.82034, w: 0}
+  m_margin: {x: 0, y: 0, z: -75.82034, w: -28.584473}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1315,7 +1315,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daea12880540d004390ceb4ca0d9b66e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experienceText: {fileID: 1790400041}
+  levelText: {fileID: 1790400041}
+  levelUpThreshold: 0
+  xpSlider: {fileID: 0}
 --- !u!1 &1819160316
 GameObject:
   m_ObjectHideFlags: 0
