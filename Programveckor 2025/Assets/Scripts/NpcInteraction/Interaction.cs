@@ -4,6 +4,7 @@ using TMPro;
 using System.Threading;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
+using UnityEngine.UI;
 
 public class Interaction : MonoBehaviour
 {
@@ -12,12 +13,17 @@ public class Interaction : MonoBehaviour
     public TextMeshProUGUI Dialogue;
     public TextMeshProUGUI DialogueEndedUi;
     public TextMeshProUGUI InteractText;
+    public TextMeshProUGUI AnswerUi;
+    public TextMeshProUGUI CancelUi;
+    public Button AnswerB;
+    public Button CancelB;
     string playerLeft = "Dialogue Ended";
     float distanceX;
     float distanceY;
     bool IsTyping = false;
     int CurrentDialogue = 1;
     public float fadeDuration = 1.0f;
+    bool hasAnswered = false;
 
     void Start()
     {
@@ -25,6 +31,8 @@ public class Interaction : MonoBehaviour
         Dialogue.gameObject.SetActive(false);
         DialogueEndedUi.gameObject.SetActive(false);
         InteractText.alpha = 0f;
+        AnswerB.interactable = false;
+        CancelB.interactable = false;
     }
 
     private Coroutine currentTypingCoroutine;
@@ -38,9 +46,9 @@ public class Interaction : MonoBehaviour
         if ((distanceX <= 2f && distanceX >= -2f) && (distanceY <= 2f && distanceY >= -2f)) //Check distance
         {
             AnimateText("Hint: Press E to interact");
-            if (Input.GetKeyDown(KeyCode.E) && !IsTyping)
+            if (Input.GetKeyDown(KeyCode.E) && !IsTyping && !hasAnswered)
             {
-                string dialogueText = CheckLog(CurrentDialogue);
+                var (dialogueText, answer) = GetDialogueAndAnswer(CurrentDialogue);
                 if (dialogueText != null)
                 {
                     dialogueStarted = true;
@@ -50,13 +58,15 @@ public class Interaction : MonoBehaviour
                         StopCoroutine(currentTypingCoroutine);
                     }
                     currentTypingCoroutine = StartCoroutine(TypeText(dialogueText));
+                    hasAnswered = true;
+                    AnswerUi.text = answer;
                 }
             }
         }
         else
         {
             InteractText.alpha = 0f;
-
+            hasAnswered = false;
             // Stop the fade-in
 
             if (dialogueStarted)
@@ -73,6 +83,10 @@ public class Interaction : MonoBehaviour
                 }
                 Dialogue.gameObject.SetActive(false);
                 CurrentDialogue = 1;
+                AnswerUi.gameObject.SetActive(false);
+                CancelUi.gameObject.SetActive(false);
+                AnswerB.interactable = false;
+                CancelB.interactable = false;
             }
         }
     }
@@ -95,6 +109,13 @@ public class Interaction : MonoBehaviour
         }
         CurrentDialogue += 1;
         IsTyping = false;
+        if (CurrentDialogue < 4)
+        {
+            AnswerUi.gameObject.SetActive(true);
+            CancelUi.gameObject.SetActive(true);
+            AnswerB.interactable = true;
+            CancelB.interactable = true;
+        }
         currentTypingCoroutine = null;
     }
 
@@ -154,24 +175,65 @@ public class Interaction : MonoBehaviour
     }
 
     //List of all the dialogues
-    public string CheckLog(int CurrentDialogue)
+    public (string, string) GetDialogueAndAnswer(int CurrentDialogue)
     {
-        Dictionary<int, string> texts = new Dictionary<int, string>
-        {
-            {1, "Hello there, it's nice to see you [Press E to continue]" },
-            {2, "I need your help! [Press E to Accept]" },
-            {3, "What are you still doing here then?? Get going" }
-        };
+        // Create a dictionary where the value is a tuple (dialogue, answer)
+        Dictionary<int, (string dialogue, string answer)> texts = new Dictionary<int, (string, string)>
+    {
+        {1, ("Hello there, it's nice to see you", "Hello, how can i help?")},
+        {2, ("There's things lurking nearby... will you help me?", "Sure")},
+        {3, ("What are you still doing here then?? Get going", "ok")},
+        {10, ("Oh ok.", "None")}
+    };
 
-        foreach (KeyValuePair<int, string> kvp in texts)
+        if (texts.ContainsKey(CurrentDialogue))
         {
-            if (kvp.Key == CurrentDialogue)
-            {
-                print(kvp.Value);
-                return kvp.Value;
-            }
+            var text = texts[CurrentDialogue];
+            return (text.dialogue, text.answer);  // Return both dialogue and answer as a tuple
         }
-        return null;
 
+        return (null, null);
+    }
+
+
+    public void Answer()
+    {
+        var (dialogueText, answer) = GetDialogueAndAnswer(CurrentDialogue);
+        if (dialogueText != null)
+        {
+            dialogueStarted = true;
+            Dialogue.gameObject.SetActive(true);
+            if (currentTypingCoroutine != null)
+            {
+                StopCoroutine(currentTypingCoroutine);
+            }
+            currentTypingCoroutine = StartCoroutine(TypeText(dialogueText));
+            AnswerUi.gameObject.SetActive(false);
+            CancelUi.gameObject.SetActive(false);
+            AnswerB.interactable = false;
+            CancelB.interactable = false;
+
+            AnswerUi.text = answer;
+        }
+    }
+
+    public void Cancel()
+    {
+        CurrentDialogue = 10;
+        var (dialogueText, answer) = GetDialogueAndAnswer(CurrentDialogue);
+        if (dialogueText != null)
+        {
+            dialogueStarted = true;
+            Dialogue.gameObject.SetActive(true);
+            if (currentTypingCoroutine != null)
+            {
+                StopCoroutine(currentTypingCoroutine);
+            }
+            currentTypingCoroutine = StartCoroutine(TypeText(dialogueText));
+            AnswerUi.gameObject.SetActive(false);
+            CancelUi.gameObject.SetActive(false);
+            AnswerB.interactable = false;
+            CancelB.interactable = false;
+        }
     }
 }
