@@ -31,6 +31,8 @@ public class Interaction : MonoBehaviour
         Dialogue.gameObject.SetActive(false);
         DialogueEndedUi.gameObject.SetActive(false);
         InteractText.alpha = 0f;
+        AnswerB.interactable = false;
+        CancelB.interactable = false;
     }
 
     private Coroutine currentTypingCoroutine;
@@ -178,7 +180,7 @@ public class Interaction : MonoBehaviour
         // Create a dictionary where the value is a tuple (dialogue, answer)
         Dictionary<int, (string dialogue, string answer)> texts = new Dictionary<int, (string, string)>
     {
-        {1, ("Hello there, it's nice to see you", "How can i help?")},
+        {1, ("Hello there, it's nice to see you", "Hello, how can i help?")},
         {2, ("There's things lurking nearby... will you help me?", "Sure")},
         {3, ("What are you still doing here then?? Get going", "ok")},
         {10, ("Oh ok.", "None")}
