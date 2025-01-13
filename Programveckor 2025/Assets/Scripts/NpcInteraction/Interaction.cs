@@ -43,7 +43,7 @@ public class Interaction : MonoBehaviour
         distanceX = PlayerBody.transform.position.x - NpcBody.transform.position.x;
         distanceY = PlayerBody.transform.position.y - NpcBody.transform.position.y;
 
-        if ((distanceX <= 2f && distanceX >= -2f) && (distanceY <= 2f && distanceY >= -2f)) //Check distance
+        if ((distanceX <= 2f && distanceX >= -2f) && (distanceY <= 2f && distanceY >= -2f)) //distance
         {
             AnimateText("Hint: Press E to interact");
             if (Input.GetKeyDown(KeyCode.E) && !IsTyping && !hasAnswered)
@@ -67,7 +67,6 @@ public class Interaction : MonoBehaviour
         {
             InteractText.alpha = 0f;
             hasAnswered = false;
-            // Stop the fade-in
 
             if (dialogueStarted)
             {
@@ -133,7 +132,7 @@ public class Interaction : MonoBehaviour
             DialogueEndedUi.text += letter;
             yield return new WaitForSeconds(0.05f);
         }
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.7f);
         DialogueEndedUi.gameObject.SetActive(false);
         currentHideTextCoroutine = null; 
     }
@@ -177,10 +176,9 @@ public class Interaction : MonoBehaviour
     //List of all the dialogues
     public (string, string) GetDialogueAndAnswer(int CurrentDialogue)
     {
-        // Create a dictionary where the value is a tuple (dialogue, answer)
         Dictionary<int, (string dialogue, string answer)> texts = new Dictionary<int, (string, string)>
     {
-        {1, ("Hello there, it's nice to see you", "Hello, how can i help?")},
+        {1, ("Hello there, it's nice to see you", "Hello, how can i help?")}, // Npc dialogue, your reply
         {2, ("There's things lurking nearby... will you help me?", "Sure")},
         {3, ("What are you still doing here then?? Get going", "ok")},
         {10, ("Oh ok.", "None")}
@@ -189,7 +187,7 @@ public class Interaction : MonoBehaviour
         if (texts.ContainsKey(CurrentDialogue))
         {
             var text = texts[CurrentDialogue];
-            return (text.dialogue, text.answer);  // Return both dialogue and answer as a tuple
+            return (text.dialogue, text.answer);
         }
 
         return (null, null);
