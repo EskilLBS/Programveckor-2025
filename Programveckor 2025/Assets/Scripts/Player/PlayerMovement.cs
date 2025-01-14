@@ -16,12 +16,16 @@ public class PlayerMovement : MonoBehaviour
     bool grounded;
     [SerializeField] GameObject groundCheck;
 
+    Animator animator;
+
     public bool pauseMovement { get; private set; }
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -36,8 +40,15 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
+                animator.SetBool("Walking", true);
+
                 // Get the input on the horizontal axis and use that as a movement vector
                 rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
+
+                if(Input.GetAxisRaw("Horizontal") == 0)
+                {
+                    animator.SetBool("Walking", false);
+                }
 
                 if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
                 {

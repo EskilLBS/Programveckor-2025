@@ -6717,6 +6717,7 @@ GameObject:
   - component: {fileID: 2061742519}
   - component: {fileID: 2061742518}
   - component: {fileID: 2061742522}
+  - component: {fileID: 2061742523}
   m_Layer: 0
   m_Name: Player Unit 1
   m_TagString: Player
@@ -6949,6 +6950,27 @@ MonoBehaviour:
   answerB: {fileID: 1379782131}
   cancelB: {fileID: 888841343}
   fadeDuration: 0.4
+--- !u!95 &2061742523
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061742514}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2a7f269743735b4295ab5f029edc1b3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2112952364
 GameObject:
   m_ObjectHideFlags: 0
