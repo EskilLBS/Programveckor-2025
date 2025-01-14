@@ -11,7 +11,7 @@ public class AggroRange : MonoBehaviour
         // Checks if the player is inside the collider, if so then start combat
         if(collision.tag == "Player")
         {
-            CombatManager.Instance.StartCombat();
+            CombatManager.Instance.StartCombat(GetComponentInParent<EnemyGroup>().enemiesInGroup);
 
             aggroCollider.enabled = false; 
         }

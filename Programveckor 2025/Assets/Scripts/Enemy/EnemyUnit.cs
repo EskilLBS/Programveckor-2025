@@ -31,7 +31,7 @@ public class EnemyUnit : UnitBase
 
             UnitBase currentTarget;
 
-            currentTarget = CombatManager.Instance.playerCharacters[Random.Range(0, CombatManager.Instance.playerCharacters.Count)];
+            currentTarget = CombatManager.Instance.playersInCombat[Random.Range(0, CombatManager.Instance.playersInCombat.Count)];
 
             currentTarget.TakeDamage(currentAttack.damage);
             Debug.Log(currentTarget.gameObject.name + ": " + currentTarget.health);

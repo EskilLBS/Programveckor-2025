@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public abstract class UnitBase : MonoBehaviour
 {
+    public string unitName;
+
     public List<AttackBase> attacks;
     public AttackBase currentAttack;
 
@@ -17,8 +19,7 @@ public abstract class UnitBase : MonoBehaviour
     {
         health = maxHealth;
     }
-
-    [Tooltip("Called when the unit takes damage, by default it subtracts the amount that gets passed in from the player's current health")]
+    
     public virtual void TakeDamage(float amount)
     {
         health -= amount;
@@ -31,13 +32,11 @@ public abstract class UnitBase : MonoBehaviour
         }
     }
 
-    [Tooltip("Called when a unit attacks, doesn't do anything by default")]
     public virtual void Attack()
     {
 
     }
 
-    [Tooltip("Called when the unit's health drops to or below zero by default, doesn't do anything by default")]
     public virtual void Die()
     {
 

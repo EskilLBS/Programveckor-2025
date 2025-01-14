@@ -21,9 +21,10 @@ public class PlayerUnit : UnitBase
         health = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Die()
     {
-        
+        CombatManager.Instance.playersInCombat.Remove(this);
+        Debug.Log(CombatManager.Instance.playersInCombat.Count);
+        gameObject.SetActive(false);
     }
 }
