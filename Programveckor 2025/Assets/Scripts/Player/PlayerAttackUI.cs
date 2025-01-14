@@ -38,6 +38,7 @@ public class PlayerAttackUI : MonoBehaviour
         {
             GameObject go = Instantiate(attackUIPrefab);
             go.transform.SetParent(attackUIParent.transform);
+            go.transform.localScale = new Vector3(1, 1, 1);
 
             go.GetComponentInChildren<TextMeshProUGUI>().text = attack.attackName;
             go.GetComponent<Button>().onClick.AddListener(() => CombatManager.Instance.AttackWithCurrentPlayerUnit(attack));
