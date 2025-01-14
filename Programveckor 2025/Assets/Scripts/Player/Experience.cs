@@ -41,6 +41,7 @@ public class Experience : MonoBehaviour
 
     public void GainExperience(int minimumAmount, int maximumAmount)
     {
+        // Add a random amount of xp to the player, based on the provided min and max amounts
         xp += Random.Range(minimumAmount, maximumAmount);
         
         xpSlider.value = xp;
@@ -51,6 +52,7 @@ public class Experience : MonoBehaviour
         }
     }
 
+    // Level up the player and update UI
     void LevelUp() 
     {
         xp -= levelUpThreshold;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CombatManager : MonoBehaviour
@@ -104,6 +105,11 @@ public class CombatManager : MonoBehaviour
         playersInCombat = new List<PlayerUnit>(playerCharacters); // Set "playersInCombat" to a new list because
                                                                   // otherwise it'll share the same memory as "playerCharacters
 
+        foreach (PlayerUnit unit in playerCharacters)
+        {
+            unit.OnStartCombat();
+        }
+
         charactersSpawn.OnStartCombat();
 
         enemyCharacters = enemiesToFight;
@@ -115,8 +121,11 @@ public class CombatManager : MonoBehaviour
         }
 
         // Enable the player's attack ui and pause movement, then start the player turn
+        currentTurnText.gameObject.SetActive(true);
         playerAttackUI.SetActive(true);
         playerMovement.SetPauseMovement(true);
+
+        Debug.Log("In ocmbat");
 
         StartCoroutine(PlayerTurn());
     }
@@ -154,6 +163,8 @@ public class CombatManager : MonoBehaviour
     // Perform the player turn
     IEnumerator PlayerTurn()
     {
+        Debug.Log("Player turn");
+
         // Set the player attack ui to active and set the correct combat state
         playerAttackUI.SetActive(true);
 
@@ -178,12 +189,19 @@ public class CombatManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
+        Debug.Log("Enemy turn time");
+
         StartCoroutine(EnemyTurn());
     }
 
     // Perform the enemy turn
     IEnumerator EnemyTurn()
     {
+        if(currentCombatState == CombatState.EnemyTurn)
+        {
+            yield break;
+        }
+
         // Set the player ui to inactive
         playerAttackUI.SetActive(false);
 
@@ -218,6 +236,7 @@ public class CombatManager : MonoBehaviour
         // Hide the extra characters and the attacking ui, then unpause player movement
         charactersSpawn.HideCharacters();
 
+        currentTurnText.gameObject.SetActive(false);
         playerAttackUI.SetActive(false);
 
         Debug.Log("You won!");
@@ -225,6 +244,11 @@ public class CombatManager : MonoBehaviour
 
         playerMovement.gameObject.SetActive(true);
         playerMovement.SetPauseMovement(false);
+
+        foreach (PlayerUnit unit in playerCharacters)
+        {
+            unit.OnStartCombat();
+        }
     }
 
     // Called when the player loses
@@ -236,8 +260,15 @@ public class CombatManager : MonoBehaviour
         playerUnit1.SetActive(true);
         playerUnit1.GetComponent<PlayerMovement>().SetPauseMovement(false);
 
+        currentTurnText.gameObject.SetActive(false);
+
         // Move the player back a little bit so that they aren't in the aggro range collider anymore
         playerUnit1.transform.position += new Vector3(-1, 0, 0);
+
+        foreach (PlayerUnit unit in playerCharacters)
+        {
+            unit.OnStartCombat();
+        }
 
         Debug.Log("You lose");
     }
@@ -296,7 +327,7 @@ public class CombatManager : MonoBehaviour
             if(currentTarget.health <= 1)
             {
                 // Set the enemy state to spared, call the OnSpared functino and then remove them from the enemy list
-                currentTarget.GetComponent<EnemyUnit>().spared = true;
+                currentTarget.GetComponent<EnemyUnit>().hasBeenSpared = true;
                 currentTarget.GetComponent<EnemyUnit>().OnSpared();
                 RemoveEnemyFromList(currentTarget.GetComponent<EnemyUnit>());
             }

@@ -2,15 +2,24 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class GoodOrBadDecision : MonoBehaviour
 {
-    int badness;
+    // Goodness and badness variables, used to determine if the player is good or evil
+    int evilness;
     int goodness;
 
     public static GoodOrBadDecision Instance;
 
     [SerializeField] GameObject badDecisionExplosion;
+
+    [SerializeField] Light2D globalLight;
+    [SerializeField] float intensityMultiplier;
+    [SerializeField] Gradient colorChangeGradient;
+    [SerializeField] int maximumEvilness;
+
     private void Awake()
     {
         if(Instance == null)
@@ -25,29 +34,28 @@ public class GoodOrBadDecision : MonoBehaviour
 
     void Start()
     {
-        badness = 0;
+        evilness = 0;
         goodness = 0;
     }
 
+    // Called when a bad decision is made
     public void BadDecision(int increaseAmount)
     {
         //1 badness is added every time you make a bad decision
-        badness += increaseAmount;
+        evilness += increaseAmount;
         print("Det var ett dåligt val!");
-        
-        //You get a warning after 3 bad decision
-        if (badness == 3)
-        {
-            print("Du har gjort flera dåliga val!!");
-            Instantiate(badDecisionExplosion);
-        }
 
-        //After you make 4 bad decisions, the world explodes
-        if (badness == 4)
+        globalLight.color = colorChangeGradient.Evaluate(intensityMultiplier / evilness);
+        globalLight.intensity = intensityMultiplier / evilness;
+
+        //You get a warning after 3 bad decision
+        if (evilness == 5)
         {
-            print("BOOM!!!!!!!!! DU SPRÄNGDE VÄRLDEN!");
+            SceneManager.LoadScene(1);
         }
     }
+
+    // Called when a good decision is made
     public void GoodDecision(int increaseAmount)
     {
         //1 goodness is added every time you make a good decision

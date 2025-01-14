@@ -19,12 +19,22 @@ public class PlayerUnit : UnitBase
     void Start()
     {
         health = maxHealth;
+
+
     }
 
+    // Initialize some values when combat starts
+    public void OnStartCombat()
+    {
+        health = maxHealth;
+
+        healthBar.value = health / maxHealth;
+    }
+
+    // Remove the unit from the "playersInCombat" list and disable the object
     public override void Die()
     {
         CombatManager.Instance.playersInCombat.Remove(this);
-        Debug.Log(CombatManager.Instance.playersInCombat.Count);
         gameObject.SetActive(false);
     }
 }

@@ -8,8 +8,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public LayerMask groundLayer;
 
-    Rigidbody2D rigidbody;
-    public int speed = 5;
+    Rigidbody2D rb;
+    [SerializeField] float speed = 5;
+    [SerializeField] float jumpHeight = 10;
 
     [SerializeField] bool topDownMovement;
     bool grounded;
@@ -20,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -31,24 +32,24 @@ public class PlayerMovement : MonoBehaviour
             if (topDownMovement)
             {
                 // Get the input on the horizontal and vertical axis and use that as a movement vector
-                rigidbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * speed;
+                rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * speed;
             }
             else
             {
                 // Get the input on the horizontal axis and use that as a movement vector
-                rigidbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rigidbody.velocity.y);
+                rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
 
                 if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
                 {
                     // Set grounded to false to ensure that the player can't jump again, and then add force upwards
-                    rigidbody.AddForce(transform.up * speed, ForceMode2D.Impulse);
+                    rb.AddForce(transform.up * jumpHeight, ForceMode2D.Impulse);
                 }
             }
         }
         else
         {
             // Make the player stand still if movement should be paused, ex. in combat
-            rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
 
 

@@ -8,18 +8,19 @@ public abstract class UnitBase : MonoBehaviour
     public string unitName;
 
     public List<AttackBase> attacks;
-    public AttackBase currentAttack;
+    protected AttackBase currentAttack;
 
-    [SerializeField] Slider healthBar;
+    [SerializeField] protected Slider healthBar;
 
-    public float maxHealth;
+    [SerializeField] protected float maxHealth;
     [HideInInspector] public float health;
 
     public UnitBase()
     {
         health = maxHealth;
     }
-    
+
+    // Called when the unit takes damage, can be overwritten if the behaviour should be different than simply losing health
     public virtual void TakeDamage(float amount)
     {
         health -= amount;
@@ -32,16 +33,19 @@ public abstract class UnitBase : MonoBehaviour
         }
     }
 
+    // Called when the unit attacks, doesn't do anything by default
     public virtual void Attack()
     {
 
     }
 
+    // Called when the unit dies, doesn't do anything by default
     public virtual void Die()
     {
 
     }
 
+    // Assigns a new attack to the unit
     public virtual void AssignNewAttack(AttackBase newAttack)
     {
         currentAttack = newAttack;

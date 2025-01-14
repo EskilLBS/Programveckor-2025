@@ -8,42 +8,50 @@ using UnityEngine.UI;
 
 public class Interaction : MonoBehaviour
 {
-    Rigidbody2D PlayerBody;
-    public Rigidbody2D NpcBody;
-    public TextMeshProUGUI Dialogue;
-    public TextMeshProUGUI DialogueEndedUi;
-    public TextMeshProUGUI InteractText;
-    public TextMeshProUGUI AnswerUi;
-    public TextMeshProUGUI CancelUi;
-    public Button AnswerB;
-    public Button CancelB;
-    string playerLeft = "Dialogue Ended";
+    Rigidbody2D playerBody;
+    [SerializeField] Rigidbody2D npcBody;
+
+    [SerializeField] TextMeshProUGUI dialogue;
+    [SerializeField] TextMeshProUGUI dialogueEndedUi;
+
+    [SerializeField] TextMeshProUGUI interactText;
+    [SerializeField] float interactionDistance = 3.5f;
+
+    [SerializeField] TextMeshProUGUI answerUi;
+    [SerializeField] TextMeshProUGUI cancelUi;
+    [SerializeField] Button answerB;
+    [SerializeField] Button cancelB;
+
+    string playerLeft = "Bye";
     float distanceX;
     float distanceY;
+
     bool IsTyping = false;
     int CurrentDialogue = 1;
+
     public float fadeDuration = 1.0f;
     bool hasAnswered = false;
+    bool dialogueStarted = false;
 
     void Start()
     {
-        PlayerBody = GetComponent<Rigidbody2D>();
-        Dialogue.gameObject.SetActive(false);
-        DialogueEndedUi.gameObject.SetActive(false);
-        InteractText.alpha = 0f;
-        AnswerB.interactable = false;
-        CancelB.interactable = false;
+        playerBody = GetComponent<Rigidbody2D>();
+        dialogue.gameObject.SetActive(false);
+        dialogueEndedUi.gameObject.SetActive(false);
+        interactText.alpha = 0f;
+        answerB.interactable = false;
+        cancelB.interactable = false;
     }
 
     private Coroutine currentTypingCoroutine;
     private Coroutine currentHideTextCoroutine;
-    private bool dialogueStarted = false;
+    
     void Update()
     {
-        distanceX = PlayerBody.transform.position.x - NpcBody.transform.position.x;
-        distanceY = PlayerBody.transform.position.y - NpcBody.transform.position.y;
+        distanceX = playerBody.transform.position.x - npcBody.transform.position.x;
+        distanceY = playerBody.transform.position.y - npcBody.transform.position.y;
 
-        if ((distanceX <= 2f && distanceX >= -2f) && (distanceY <= 2f && distanceY >= -2f)) //distance
+        if ((distanceX <= interactionDistance && distanceX >= -interactionDistance) && (distanceY <= interactionDistance && distanceY >= -interactionDistance)) //distance
         {
             AnimateText("Hint: Press E to interact");
             if (Input.GetKeyDown(KeyCode.E) && !IsTyping && !hasAnswered)
@@ -52,20 +60,20 @@ public class Interaction : MonoBehaviour
                 if (dialogueText != null)
                 {
                     dialogueStarted = true;
-                    Dialogue.gameObject.SetActive(true);
+                    dialogue.gameObject.SetActive(true);
                     if (currentTypingCoroutine != null)
                     {
                         StopCoroutine(currentTypingCoroutine);
                     }
                     currentTypingCoroutine = StartCoroutine(TypeText(dialogueText));
                     hasAnswered = true;
-                    AnswerUi.text = answer;
+                    answerUi.text = answer;
                 }
             }
         }
         else
         {
-            InteractText.alpha = 0f;
+            interactText.alpha = 0f;
             hasAnswered = false;
 
             if (dialogueStarted)
@@ -80,12 +88,12 @@ public class Interaction : MonoBehaviour
                 {
                     currentHideTextCoroutine = StartCoroutine(HideText(playerLeft));
                 }
-                Dialogue.gameObject.SetActive(false);
+                dialogue.gameObject.SetActive(false);
                 CurrentDialogue = 1;
-                AnswerUi.gameObject.SetActive(false);
-                CancelUi.gameObject.SetActive(false);
-                AnswerB.interactable = false;
-                CancelB.interactable = false;
+                answerUi.gameObject.SetActive(false);
+                cancelUi.gameObject.SetActive(false);
+                answerB.interactable = false;
+                cancelB.interactable = false;
             }
         }
     }
@@ -97,23 +105,23 @@ public class Interaction : MonoBehaviour
             currentHideTextCoroutine = null;
         }
 
-        DialogueEndedUi.gameObject.SetActive(false);
+        dialogueEndedUi.gameObject.SetActive(false);
         IsTyping = true;
-        Dialogue.text = "";
+        dialogue.text = "";
 
         foreach (char letter in DialogueText)
         {
-            Dialogue.text += letter;
+            dialogue.text += letter;
             yield return new WaitForSeconds(0.05f);
         }
         CurrentDialogue += 1;
         IsTyping = false;
         if (CurrentDialogue < 4)
         {
-            AnswerUi.gameObject.SetActive(true);
-            CancelUi.gameObject.SetActive(true);
-            AnswerB.interactable = true;
-            CancelB.interactable = true;
+            answerUi.gameObject.SetActive(true);
+            cancelUi.gameObject.SetActive(true);
+            answerB.interactable = true;
+            cancelB.interactable = true;
         }
         currentTypingCoroutine = null;
     }
@@ -122,18 +130,18 @@ public class Interaction : MonoBehaviour
     IEnumerator HideText(string playerLeft)
     {
         IsTyping = false;
-        Dialogue.text = "";
-        DialogueEndedUi.gameObject.SetActive(true);
-        DialogueEndedUi.text = "";
-        DialogueEndedUi.color = Color.red;
+        dialogue.text = "";
+        dialogueEndedUi.gameObject.SetActive(true);
+        dialogueEndedUi.text = "";
 
+        // Write one letter every 0.05 seconds
         foreach (char letter in playerLeft)
         {
-            DialogueEndedUi.text += letter;
+            dialogueEndedUi.text += letter;
             yield return new WaitForSeconds(0.05f);
         }
         yield return new WaitForSeconds(0.7f);
-        DialogueEndedUi.gameObject.SetActive(false);
+        dialogueEndedUi.gameObject.SetActive(false);
         currentHideTextCoroutine = null; 
     }
     public void AnimateText(string message)
@@ -142,35 +150,35 @@ public class Interaction : MonoBehaviour
     }
     public void ShowText(string message)
     {
-        InteractText.text = message;
+        interactText.text = message;
         StartCoroutine(FadeInText());
     }
 
     IEnumerator FadeInText()
     {
-        InteractText.alpha = 0f;
+        interactText.alpha = 0f;
         float elapsedTime = 0f;
 
         while (elapsedTime < fadeDuration)
         {
-            InteractText.alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
+            interactText.alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        InteractText.alpha = 1f;
+        interactText.alpha = 1f;
     }
     IEnumerator FadeOutText()
     {
-        InteractText.alpha = 1f;
+        interactText.alpha = 1f;
         float elapsedTime = 0f;
 
         while (elapsedTime < fadeDuration)
         {
-            InteractText.alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+            interactText.alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        InteractText.alpha = 0f;
+        interactText.alpha = 0f;
     }
 
     //List of all the dialogues
@@ -178,10 +186,10 @@ public class Interaction : MonoBehaviour
     {
         Dictionary<int, (string dialogue, string answer)> texts = new Dictionary<int, (string, string)>
     {
-        {1, ("Hello there, it's nice to see you", "Hello, how can i help?")}, // Npc dialogue, your reply
-        {2, ("There's things lurking nearby... will you help me?", "Sure")},
-        {3, ("What are you still doing here then?? Get going", "ok")},
-        {10, ("Oh ok.", "None")}
+        {1, ("Hello there, it's nice to see you", "Hello, what were those monsters over there?")}, // Npc dialogue, your reply
+        {2, ("Oh those? Don't worry about it, you did the right thing by not killing them", "What do you mean?")},
+        {3, ("Eh, nothing really, you only made sure the world didn't explode", "ok")},
+        {10, ("Oh ok, bye.", "None")}
     };
 
         if (texts.ContainsKey(CurrentDialogue))
@@ -200,18 +208,18 @@ public class Interaction : MonoBehaviour
         if (dialogueText != null)
         {
             dialogueStarted = true;
-            Dialogue.gameObject.SetActive(true);
+            dialogue.gameObject.SetActive(true);
             if (currentTypingCoroutine != null)
             {
                 StopCoroutine(currentTypingCoroutine);
             }
             currentTypingCoroutine = StartCoroutine(TypeText(dialogueText));
-            AnswerUi.gameObject.SetActive(false);
-            CancelUi.gameObject.SetActive(false);
-            AnswerB.interactable = false;
-            CancelB.interactable = false;
+            answerUi.gameObject.SetActive(false);
+            cancelUi.gameObject.SetActive(false);
+            answerB.interactable = false;
+            cancelB.interactable = false;
 
-            AnswerUi.text = answer;
+            answerUi.text = answer;
         }
     }
 
@@ -222,16 +230,16 @@ public class Interaction : MonoBehaviour
         if (dialogueText != null)
         {
             dialogueStarted = true;
-            Dialogue.gameObject.SetActive(true);
+            dialogue.gameObject.SetActive(true);
             if (currentTypingCoroutine != null)
             {
                 StopCoroutine(currentTypingCoroutine);
             }
             currentTypingCoroutine = StartCoroutine(TypeText(dialogueText));
-            AnswerUi.gameObject.SetActive(false);
-            CancelUi.gameObject.SetActive(false);
-            AnswerB.interactable = false;
-            CancelB.interactable = false;
+            answerUi.gameObject.SetActive(false);
+            cancelUi.gameObject.SetActive(false);
+            answerB.interactable = false;
+            cancelB.interactable = false;
         }
     }
 }
