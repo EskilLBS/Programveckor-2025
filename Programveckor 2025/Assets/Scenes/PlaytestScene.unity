@@ -200,11 +200,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3668135404691675680, guid: c8aa4dc7d4c4ff249b9c9d125b88971e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 200
+      value: 93
       objectReference: {fileID: 0}
     - target: {fileID: 3668135404691675680, guid: c8aa4dc7d4c4ff249b9c9d125b88971e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -58
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3668135404691675680, guid: c8aa4dc7d4c4ff249b9c9d125b88971e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -610,7 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -2427,7 +2427,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 100.60002, y: -37.3}
+  m_AnchoredPosition: {x: -4, y: -87}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &805217628
@@ -4550,17 +4550,17 @@ MonoBehaviour:
   intensityMultiplier: 1
   colorChangeGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 0, b: 0, a: 1}
-    key1: {r: 1, g: 0.6649386, b: 0.51257855, a: 1}
-    key2: {r: 1, g: 1, b: 1, a: 0}
+    key0: {r: 0.20175222, g: 0.2506094, b: 0.63522005, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 32768
-    ctime2: 65535
+    ctime1: 65535
+    ctime2: 0
     ctime3: 0
     ctime4: 0
     ctime5: 0
@@ -4576,7 +4576,7 @@ MonoBehaviour:
     atime7: 0
     m_Mode: 0
     m_ColorSpace: -1
-    m_NumColorKeys: 3
+    m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   maximumEvilness: 0
 --- !u!4 &1447222728
@@ -6453,7 +6453,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -25}
+  m_AnchoredPosition: {x: 91, y: 39}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2017628020
@@ -6659,11 +6659,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5365388473642076026, guid: eb09ad4a0c1f4ff48896567839bff2d5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 200
+      value: 94
       objectReference: {fileID: 0}
     - target: {fileID: 5365388473642076026, guid: eb09ad4a0c1f4ff48896567839bff2d5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 50
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 5365388473642076026, guid: eb09ad4a0c1f4ff48896567839bff2d5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6752,7 +6752,7 @@ Transform:
   m_GameObject: {fileID: 2061742514}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -47.7, y: -1.7, z: 0}
+  m_LocalPosition: {x: -47.7, y: -2.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
