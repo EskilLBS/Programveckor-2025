@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     bool grounded;
     [SerializeField] GameObject groundCheck;
 
-    Animator animator;
+    [SerializeField] Animator animator;
 
     public bool pauseMovement { get; private set; }
 
@@ -24,8 +24,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -45,6 +43,15 @@ public class PlayerMovement : MonoBehaviour
                 // Get the input on the horizontal axis and use that as a movement vector
                 rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
 
+                if(rb.velocity.x < 0)
+                {
+                    animator.gameObject.transform.localScale = new Vector3(-1, 1, 1);
+                }
+                else if(rb.velocity.x > 0)
+                {
+                    animator.gameObject.transform.localScale = new Vector3(1, 1, 1);
+                }
+
                 if(Input.GetAxisRaw("Horizontal") == 0)
                 {
                     animator.SetBool("Walking", false);
@@ -61,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
         {
             // Make the player stand still if movement should be paused, ex. in combat
             rb.velocity = new Vector2(0, rb.velocity.y);
+            animator.SetBool("Walking", false);
         }
 
 

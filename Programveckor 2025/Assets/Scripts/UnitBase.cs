@@ -15,6 +15,8 @@ public abstract class UnitBase : MonoBehaviour
     [SerializeField] protected float maxHealth;
     [HideInInspector] public float health;
 
+    [SerializeField] protected float healthSmoothTime = 0.5f;
+
     public UnitBase()
     {
         health = maxHealth;
@@ -25,11 +27,25 @@ public abstract class UnitBase : MonoBehaviour
     {
         health -= amount;
 
-        healthBar.value = health / maxHealth;
+        StartCoroutine(SmoothHealthBar());
 
         if(health <= 0)
         {
             Die();
+        }
+    }
+
+    protected virtual IEnumerator SmoothHealthBar()
+    {
+        float elapsedTime = 0;
+
+        while (elapsedTime < healthSmoothTime)
+        {
+            healthBar.value = Mathf.Lerp(healthBar.value, health / maxHealth, elapsedTime / healthSmoothTime);
+
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
         }
     }
 

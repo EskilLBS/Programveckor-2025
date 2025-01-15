@@ -41,6 +41,7 @@ public class CombatManager : MonoBehaviour
     EnemyUnit currentEnemyUnit;
     // A marker on the current target to show which unit is targeted
     [HideInInspector] public GameObject currentTargetMarker { get; private set; }
+    [SerializeField] GameObject currentPlayerMarker;
 
     // A refernce to the player movement script
     [SerializeField] PlayerMovement playerMovement;
@@ -99,6 +100,8 @@ public class CombatManager : MonoBehaviour
     // Set up the start of combat
     public void StartCombat(List<EnemyUnit> enemiesToFight)
     {
+        currentPlayerMarker.SetActive(true);
+
         // Set the combat state, the players in combat and enemies to fight
         currentCombatState = CombatState.Start;
 
@@ -163,6 +166,8 @@ public class CombatManager : MonoBehaviour
     // Perform the player turn
     IEnumerator PlayerTurn()
     {
+        currentPlayerMarker.SetActive(true);
+
         Debug.Log("Player turn");
 
         // Set the player attack ui to active and set the correct combat state
@@ -174,6 +179,8 @@ public class CombatManager : MonoBehaviour
         foreach (PlayerUnit unit in playersInCombat)
         {
             currentPlayerUnit = unit;
+
+            currentPlayerMarker.transform.position = new Vector3(unit.transform.position.x, unit.transform.position.y + 2.2f, 0);
 
             currentTurnText.text = unit.unitName + "'s turn";
 
@@ -197,6 +204,8 @@ public class CombatManager : MonoBehaviour
     // Perform the enemy turn
     IEnumerator EnemyTurn()
     {
+        currentPlayerMarker.SetActive(false);
+
         if(currentCombatState == CombatState.EnemyTurn)
         {
             yield break;
@@ -233,6 +242,7 @@ public class CombatManager : MonoBehaviour
     // Called when the player wins
     void Win()
     {
+        currentPlayerMarker.SetActive(false);
         // Hide the extra characters and the attacking ui, then unpause player movement
         charactersSpawn.HideCharacters();
 
@@ -254,6 +264,7 @@ public class CombatManager : MonoBehaviour
     // Called when the player loses
     void Lose()
     {
+        currentPlayerMarker.SetActive(false);
         currentCombatState = CombatState.OutOfCombat; // Sets the combat state to out of combat
 
         // Enables the main player unit so that the player can move again
