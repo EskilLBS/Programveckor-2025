@@ -4898,7 +4898,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  maximumEvilness: 0
+  maximumEvilness: 10
 --- !u!4 &1447222728
 Transform:
   m_ObjectHideFlags: 0
