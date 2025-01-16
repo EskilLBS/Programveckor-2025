@@ -36,11 +36,11 @@ public class Interaction : MonoBehaviour
     void Start()
     {
         playerBody = GetComponent<Rigidbody2D>();
-        dialogue.gameObject.SetActive(false);
-        dialogueEndedUi.gameObject.SetActive(false);
+        dialogue.transform.parent.gameObject.SetActive(false);
+        dialogueEndedUi.transform.parent.gameObject.SetActive(false);
         interactText.alpha = 0f;
-        answerB.interactable = false;
-        cancelB.interactable = false;
+        answerB.gameObject.SetActive(false);
+        cancelB.gameObject.SetActive(false);
     }
 
     private Coroutine currentTypingCoroutine;
@@ -60,7 +60,7 @@ public class Interaction : MonoBehaviour
                 if (dialogueText != null)
                 {
                     dialogueStarted = true;
-                    dialogue.gameObject.SetActive(true);
+                    dialogue.transform.parent.gameObject.SetActive(true);
                     if (currentTypingCoroutine != null)
                     {
                         StopCoroutine(currentTypingCoroutine);
@@ -88,12 +88,12 @@ public class Interaction : MonoBehaviour
                 {
                     currentHideTextCoroutine = StartCoroutine(HideText(playerLeft));
                 }
-                dialogue.gameObject.SetActive(false);
+                dialogue.transform.parent.gameObject.SetActive(false);
                 CurrentDialogue = 1;
-                answerUi.gameObject.SetActive(false);
-                cancelUi.gameObject.SetActive(false);
-                answerB.interactable = false;
-                cancelB.interactable = false;
+                answerUi.transform.parent.gameObject.SetActive(false);
+                cancelUi.transform.parent.gameObject.SetActive(false);
+                answerB.gameObject.SetActive(false);
+                cancelB.gameObject.SetActive(false);
             }
         }
     }
@@ -105,7 +105,7 @@ public class Interaction : MonoBehaviour
             currentHideTextCoroutine = null;
         }
 
-        dialogueEndedUi.gameObject.SetActive(false);
+        dialogueEndedUi.transform.parent.gameObject.SetActive(false);
         IsTyping = true;
         dialogue.text = "";
 
@@ -118,10 +118,10 @@ public class Interaction : MonoBehaviour
         IsTyping = false;
         if (CurrentDialogue < 4)
         {
-            answerUi.gameObject.SetActive(true);
-            cancelUi.gameObject.SetActive(true);
-            answerB.interactable = true;
-            cancelB.interactable = true;
+            answerUi.transform.parent.gameObject.SetActive(true);
+            cancelUi.transform.parent.gameObject.SetActive(true);
+            answerB.gameObject.SetActive(true);
+            cancelB.gameObject.SetActive(true);
         }
         currentTypingCoroutine = null;
     }
@@ -131,7 +131,7 @@ public class Interaction : MonoBehaviour
     {
         IsTyping = false;
         dialogue.text = "";
-        dialogueEndedUi.gameObject.SetActive(true);
+        dialogueEndedUi.transform.parent.gameObject.SetActive(true);
         dialogueEndedUi.text = "";
 
         // Write one letter every 0.05 seconds
@@ -141,7 +141,7 @@ public class Interaction : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
         yield return new WaitForSeconds(0.7f);
-        dialogueEndedUi.gameObject.SetActive(false);
+        dialogueEndedUi.transform.parent.gameObject.SetActive(false);
         currentHideTextCoroutine = null; 
     }
     public void AnimateText(string message)
@@ -208,16 +208,16 @@ public class Interaction : MonoBehaviour
         if (dialogueText != null)
         {
             dialogueStarted = true;
-            dialogue.gameObject.SetActive(true);
+            dialogue.transform.parent.gameObject.SetActive(true);
             if (currentTypingCoroutine != null)
             {
                 StopCoroutine(currentTypingCoroutine);
             }
             currentTypingCoroutine = StartCoroutine(TypeText(dialogueText));
-            answerUi.gameObject.SetActive(false);
-            cancelUi.gameObject.SetActive(false);
-            answerB.interactable = false;
-            cancelB.interactable = false;
+            answerUi.transform.parent.gameObject.SetActive(false);
+            cancelUi.transform.parent.gameObject.SetActive(false);
+            answerB.gameObject.SetActive(false);
+            cancelB.gameObject.SetActive(false);
 
             answerUi.text = answer;
         }
@@ -236,10 +236,10 @@ public class Interaction : MonoBehaviour
                 StopCoroutine(currentTypingCoroutine);
             }
             currentTypingCoroutine = StartCoroutine(TypeText(dialogueText));
-            answerUi.gameObject.SetActive(false);
-            cancelUi.gameObject.SetActive(false);
-            answerB.interactable = false;
-            cancelB.interactable = false;
+            answerUi.transform.parent.gameObject.SetActive(false);
+            cancelUi.transform.parent.gameObject.SetActive(false);
+            answerB.gameObject.SetActive(false);
+            cancelB.gameObject.SetActive(false);
         }
     }
 }

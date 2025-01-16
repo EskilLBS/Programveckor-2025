@@ -13,6 +13,11 @@ public class AttackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void SetText(AttackBase newAttack, float mult)
     {
+        if(CombatManager.Instance.currentCombatState == CombatManager.CombatState.OutOfCombat)
+        {
+            return;
+        }
+
         textElement = GameObject.Find("AttackInfoText").GetComponent<TextMeshProUGUI>();
 
         attack = newAttack;
