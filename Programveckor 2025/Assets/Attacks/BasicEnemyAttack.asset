@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e01e93e696d9ac42bff88436bdbb7c0, type: 3}
   m_Name: BasicEnemyAttack
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
+  armorIncrease: 0
   attackName: BasicEnemyAttack
+  selfDamage: 0

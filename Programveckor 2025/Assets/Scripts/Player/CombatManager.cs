@@ -29,7 +29,7 @@ public class CombatManager : MonoBehaviour
     public CombatState currentCombatState;
 
     // A list of the player characters
-    [SerializeField] List<PlayerUnit> playerCharacters;
+    [field: SerializeField] public List<PlayerUnit> playerCharacters { get; private set; }
     // A list of the player characters currently in combat
     [HideInInspector] public List<PlayerUnit> playersInCombat;
     // The current player unit that has to attack
@@ -38,7 +38,7 @@ public class CombatManager : MonoBehaviour
     bool awaitingPlayerInput = false;
 
     // A list of the enemy characters
-    [SerializeField] List<EnemyUnit> enemyCharacters;
+    [field: SerializeField] public List<EnemyUnit> enemyCharacters { get; private set; }
     // The current enemy character
     EnemyUnit currentEnemyUnit;
     // A marker on the current target to show which unit is targeted
@@ -255,7 +255,7 @@ public class CombatManager : MonoBehaviour
     {
         currentPlayerMarker.SetActive(false);
         // Hide the extra characters and the attacking ui, then unpause player movement
-        charactersSpawn.HideCharacters();
+        StartCoroutine(charactersSpawn.HideCharacters());
 
         currentTurnText.gameObject.SetActive(false);
         playerAttackUI.SetActive(false);
@@ -268,7 +268,7 @@ public class CombatManager : MonoBehaviour
 
         foreach (PlayerUnit unit in playerCharacters)
         {
-            unit.OnStartCombat();
+            //unit.OnStartCombat();
         }
     }
 

@@ -14,6 +14,8 @@ public class ExtraCharactersSpawn : MonoBehaviour
     [SerializeField] Transform secondUnit;
     [SerializeField] Transform thirdUnit;
 
+    [SerializeField] float hideTime;
+
     // The move duration for the units in seconds
     [SerializeField] float moveDuration;
 
@@ -24,8 +26,25 @@ public class ExtraCharactersSpawn : MonoBehaviour
     }
 
     // Called to hide characters at the end of combat
-    public void HideCharacters()
+    public IEnumerator HideCharacters()
     {
+        float elapsedTime = 0;
+
+        while(elapsedTime < hideTime)
+        {
+            Color secondUnitColor = secondUnit.GetComponent<SpriteRenderer>().color;
+            Color thirdUnitColor = thirdUnit.GetComponent<SpriteRenderer>().color;
+
+            secondUnit.GetComponent<SpriteRenderer>().color = 
+                new Color(secondUnitColor.r, secondUnitColor.g, secondUnitColor.b, Mathf.Lerp(1, 0, elapsedTime / hideTime));
+
+            thirdUnit.GetComponent<SpriteRenderer>().color =
+                new Color(thirdUnitColor.r, thirdUnitColor.g, thirdUnitColor.b, Mathf.Lerp(1, 0, elapsedTime / hideTime));
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
         secondUnit.gameObject.SetActive(false);
         thirdUnit.gameObject.SetActive(false);
     }
@@ -33,6 +52,15 @@ public class ExtraCharactersSpawn : MonoBehaviour
     // Moves the units
     IEnumerator MoveUnits()
     {
+        Color secondUnitColor = secondUnit.GetComponent<SpriteRenderer>().color;
+        Color thirdUnitColor = thirdUnit.GetComponent<SpriteRenderer>().color;
+
+        secondUnit.GetComponent<SpriteRenderer>().color =
+                new Color(secondUnitColor.r, secondUnitColor.g, secondUnitColor.b, 1);
+
+        thirdUnit.GetComponent<SpriteRenderer>().color =
+            new Color(thirdUnitColor.r, thirdUnitColor.g, thirdUnitColor.b, 1);
+
         secondUnit.gameObject.SetActive(true);
         thirdUnit.gameObject.SetActive(true);
 

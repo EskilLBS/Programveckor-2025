@@ -59,5 +59,10 @@ public class Experience : MonoBehaviour
         playerLevel++;
         levelText.text = "Level: " + playerLevel;
         xpSlider.value = xp;
+
+        foreach (PlayerUnit playerUnit in CombatManager.Instance.playerCharacters)
+        {
+            playerUnit.IncreaseMaxHealth();
+        }
     }
 }

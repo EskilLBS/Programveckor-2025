@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e01e93e696d9ac42bff88436bdbb7c0, type: 3}
-  m_Name: HarderEnemyAttack
+  m_Name: AmaAttack
   m_EditorClassIdentifier: 
-  damage: 4
+  damage: 3
   armorIncrease: 0
-  attackName: HarderEnemyAttack
+  attackName: AmaAttack
   selfDamage: 0

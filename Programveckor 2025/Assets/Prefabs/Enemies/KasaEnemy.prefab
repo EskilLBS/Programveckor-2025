@@ -103,13 +103,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Enemy
   attacks:
-  - {fileID: 11400000, guid: 6fcdc5d435e93d5499fef494797087a8, type: 2}
+  - {fileID: 11400000, guid: 7d65d5ac7a9d25443ab24a6591447269, type: 2}
   healthBar: {fileID: 6701248258691414468}
-  maxHealth: 8
+  maxHealth: 3
   health: 0
   healthSmoothTime: 0.8
   hasBeenSpared: 0
   sparedLifeRetreatSpeed: 3
+  armor: 0
 --- !u!61 &6521366769149457343
 BoxCollider2D:
   m_ObjectHideFlags: 0

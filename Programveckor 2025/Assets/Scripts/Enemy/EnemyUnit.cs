@@ -29,33 +29,44 @@ public class EnemyUnit : UnitBase
         // Only attack if it hasn't been spared, to avoid bugs where enemies attack after being spared
         if (!hasBeenSpared)
         {
-            if(currentAttack.armorIncrease > 0)
-            {
-                armor += currentAttack.armorIncrease;
-            }
-
-            StartCoroutine(AttackAnimation());
+            
+            
 
             // Assign a random attack to the player
             AssignNewAttack(attacks[Random.Range(0, attacks.Count)]);
 
-            // Set "currentTarget" to a random player unit
-            UnitBase currentTarget;
-            currentTarget = CombatManager.Instance.playersInCombat[Random.Range(0, CombatManager.Instance.playersInCombat.Count)];
+            if (currentAttack.armorIncrease > 0)
+            {
+                StartCoroutine(AttackAnimation("Defending"));
 
-            // Make the current target take damage equal to the damage of the current attack
-            currentTarget.TakeDamage(currentAttack.damage);        
-        }
-        
+                armor += currentAttack.armorIncrease;
+            }
+            else
+            {
+                if (currentAttack.selfDamage)
+                {
+                    TakeDamage(currentAttack.damage * 0.5f);
+                }
+
+                StartCoroutine(AttackAnimation("Attacking"));
+
+                // Set "currentTarget" to a random player unit
+                UnitBase currentTarget;
+                currentTarget = CombatManager.Instance.playersInCombat[Random.Range(0, CombatManager.Instance.playersInCombat.Count)];
+
+                // Make the current target take damage equal to the damage of the current attack
+                currentTarget.TakeDamage(currentAttack.damage);
+            }              
+        }      
     }
 
-    IEnumerator AttackAnimation()
+    IEnumerator AttackAnimation(string animBoolName)
     {
-        anim.SetBool("Attacking", true);
+        anim.SetBool(animBoolName, true);
 
         yield return new WaitForSeconds(anim.GetNextAnimatorStateInfo(0).length);
 
-        anim.SetBool("Attacking", false);
+        anim.SetBool(animBoolName, false);
     }
 
     // Check if the unit is clicked
@@ -82,7 +93,7 @@ public class EnemyUnit : UnitBase
 
     public override void TakeDamage(float amount)
     {
-        amount -= armor;
+        Mathf.Clamp(amount -= armor, 0, Mathf.Infinity);
         if(armor > 0)
         {
             armor--;

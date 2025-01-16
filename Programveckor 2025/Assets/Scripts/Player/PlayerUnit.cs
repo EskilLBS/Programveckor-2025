@@ -7,6 +7,8 @@ public class PlayerUnit : UnitBase
     public float attackMult = 1f;
     public float attackIncreasePerLevel = 1.1f; // The multiplicative increase per level, (this number)^playerLevel
 
+    [SerializeField] bool keepHealthAfterCombat = false;
+
     public override void Attack()
     {
         
@@ -27,8 +29,6 @@ public class PlayerUnit : UnitBase
     void Start()
     {
         health = maxHealth;
-
-
     }
 
     private void Update()
@@ -40,9 +40,17 @@ public class PlayerUnit : UnitBase
     // Initialize some values when combat starts
     public void OnStartCombat()
     {
-        health = maxHealth;
+        if (!keepHealthAfterCombat)
+        {
+            health = maxHealth;
 
-        healthBar.value = health / maxHealth;
+            healthBar.value = health / maxHealth;
+        }  
+    }
+
+    public void IncreaseMaxHealth()
+    {
+        maxHealth++;
     }
 
     // Remove the unit from the "playersInCombat" list and disable the object
