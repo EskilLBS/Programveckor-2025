@@ -43,11 +43,15 @@ public class GoodOrBadDecision : MonoBehaviour
         karma -= increaseAmount;
         print("Det var ett dåligt val!");
 
-        globalLight.color = colorChangeGradient.Evaluate(intensityMultiplier / karma);
-        globalLight.intensity = intensityMultiplier / karma;
+        if(karma < 0)
+        {
+            globalLight.color = colorChangeGradient.Evaluate(intensityMultiplier / -karma);
+            globalLight.intensity = intensityMultiplier / -karma;
+        }
+        
 
         //You get a warning after 3 bad decision
-        if (karma == maximumEvilness)
+        if (karma == -maximumEvilness)
         {
             SceneManager.LoadScene(1);
         }

@@ -329,6 +329,7 @@ public class CombatManager : MonoBehaviour
         currentTargetMarker = Instantiate(new GameObject(), unit.transform.position, Quaternion.identity);
         SpriteRenderer spriteRenderer = currentTargetMarker.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = unit.GetComponent<SpriteRenderer>().sprite;
+        spriteRenderer.color = new Color(0, 0, 0, 0.7f);
         currentTargetMarker.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
         currentTargetMarker.transform.position += new Vector3(0, 0, 1);
     }
