@@ -45,7 +45,14 @@ public class PlayerUnit : UnitBase
             health = maxHealth;
 
             healthBar.value = health / maxHealth;
-        }  
+        }
+        healthBar.gameObject.SetActive(true);
+        
+    }
+
+    public void OnCombatEnd()
+    {
+        healthBar.gameObject.SetActive(false);
     }
 
     public void IncreaseMaxHealth()

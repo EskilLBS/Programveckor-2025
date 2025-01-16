@@ -88,7 +88,7 @@ public class EnemyUnit : UnitBase
 
         Experience.Instance.GainExperience(1, 11);
 
-        Destroy(gameObject);
+        Destroy(gameObject, .5f);
     }
 
     public override void TakeDamage(float amount)

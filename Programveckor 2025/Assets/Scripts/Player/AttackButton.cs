@@ -13,7 +13,7 @@ public class AttackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void SetText(AttackBase newAttack, float mult)
     {
-        if(CombatManager.Instance.currentCombatState == CombatManager.CombatState.OutOfCombat)
+        if(CombatManager.Instance.currentCombatState != CombatManager.CombatState.PlayerTurn)
         {
             return;
         }

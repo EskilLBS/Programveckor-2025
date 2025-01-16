@@ -253,6 +253,11 @@ public class CombatManager : MonoBehaviour
     // Called when the player wins
     void Win()
     {
+        foreach (PlayerUnit unit in playerCharacters)
+        {
+            unit.OnCombatEnd();
+        }
+
         currentPlayerMarker.SetActive(false);
         // Hide the extra characters and the attacking ui, then unpause player movement
         StartCoroutine(charactersSpawn.HideCharacters());
