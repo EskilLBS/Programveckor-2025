@@ -22,6 +22,18 @@ public abstract class UnitBase : MonoBehaviour
         health = maxHealth;
     }
 
+    private void Update()
+    {
+        if (CombatManager.Instance.currentCombatState == CombatManager.CombatState.OutOfCombat)
+        {
+            healthBar.gameObject.SetActive(false);
+        }
+        else
+        {
+            healthBar.gameObject.SetActive(true);
+        }
+    }
+
     // Called when the unit takes damage, can be overwritten if the behaviour should be different than simply losing health
     public virtual void TakeDamage(float amount)
     {

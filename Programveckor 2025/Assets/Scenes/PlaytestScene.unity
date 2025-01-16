@@ -7062,7 +7062,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   speed: 7
-  jumpHeight: 10
+  jumpHeight: 6
   topDownMovement: 0
   groundCheck: {fileID: 1695562917}
   animator: {fileID: 2080895062}
@@ -7137,7 +7137,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2061742514}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 165ad8c933f0dd04eaf91196acd81d84, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -7189,7 +7189,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 165ad8c933f0dd04eaf91196acd81d84, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

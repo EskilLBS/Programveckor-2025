@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CombatManager : MonoBehaviour
 {
@@ -282,6 +283,8 @@ public class CombatManager : MonoBehaviour
         }
 
         Debug.Log("You lose");
+
+        SceneManager.LoadScene(2);
     }
 
     // Called to set the current target and spawn a target marker on them

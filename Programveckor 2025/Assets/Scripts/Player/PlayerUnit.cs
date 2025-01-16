@@ -11,6 +11,15 @@ public class PlayerUnit : UnitBase
     {
         attackMult = Mathf.Pow(attackIncreasePerLevel, Experience.Instance.playerLevel);
 
+        if(currentAttack.selfDamage == true)
+        {
+            if(Random.Range(0, 4) == 0)
+            {
+                TakeDamage(currentAttack.damage);
+                return;
+            }
+        }
+
         Debug.Log(CombatManager.Instance.currentTarget.name + ": " + (CombatManager.Instance.currentTarget.health - currentAttack.damage));
         CombatManager.Instance.currentTarget.TakeDamage(currentAttack.damage * attackMult);        
     }
@@ -22,6 +31,9 @@ public class PlayerUnit : UnitBase
 
 
     }
+
+
+
 
     // Initialize some values when combat starts
     public void OnStartCombat()

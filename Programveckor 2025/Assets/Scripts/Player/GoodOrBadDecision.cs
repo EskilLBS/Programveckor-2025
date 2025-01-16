@@ -49,7 +49,7 @@ public class GoodOrBadDecision : MonoBehaviour
         globalLight.intensity = intensityMultiplier / evilness;
 
         //You get a warning after 3 bad decision
-        if (evilness == 5)
+        if (evilness == maximumEvilness)
         {
             SceneManager.LoadScene(1);
         }
