@@ -9,13 +9,12 @@ public class PlayerUnit : UnitBase
 
     public override void Attack()
     {
-        attackMult = Mathf.Pow(attackIncreasePerLevel, Experience.Instance.playerLevel);
-
+        
         if(currentAttack.selfDamage == true)
         {
             if(Random.Range(0, 4) == 0)
             {
-                TakeDamage(currentAttack.damage);
+                TakeDamage(currentAttack.damage * 0.5f);
                 return;
             }
         }
@@ -32,7 +31,10 @@ public class PlayerUnit : UnitBase
 
     }
 
-
+    private void Update()
+    {
+        attackMult = Mathf.Pow(attackIncreasePerLevel, Experience.Instance.playerLevel);
+    }
 
 
     // Initialize some values when combat starts

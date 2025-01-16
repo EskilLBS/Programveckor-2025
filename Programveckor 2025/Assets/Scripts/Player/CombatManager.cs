@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.UI.CanvasScaler;
 
 public class CombatManager : MonoBehaviour
 {
@@ -76,6 +77,11 @@ public class CombatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(currentCombatState == CombatState.PlayerTurn)
+        {
+            currentPlayerMarker.transform.position = new Vector3(currentPlayerUnit.transform.position.x, currentPlayerUnit.transform.position.y + 2.2f, 0);
+        }
+
         // A bunch of checks to see if the player has won or lost
         if(enemyCharacters.Count <= 0 && currentCombatState != CombatState.OutOfCombat)
         {
@@ -98,6 +104,8 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    
+
     // Set up the start of combat
     public void StartCombat(List<EnemyUnit> enemiesToFight)
     {
@@ -105,11 +113,6 @@ public class CombatManager : MonoBehaviour
 
         // Set the combat state, the players in combat and enemies to fight
         currentCombatState = CombatState.Start;
-
-        if(playersInCombat.Count > 0)
-        {
-            playersInCombat.Clear();
-        }
 
         playersInCombat = new List<PlayerUnit>(playerCharacters); // Set "playersInCombat" to a new list because
                                                                   // otherwise it'll share the same memory as "playerCharacters

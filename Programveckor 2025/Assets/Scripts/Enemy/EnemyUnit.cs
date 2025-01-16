@@ -5,15 +5,20 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyUnit : UnitBase
 {
+    Animator anim;
+
     // Has the enemy been spared or not?
     [HideInInspector] public bool hasBeenSpared;
 
     Rigidbody2D rb;
     [SerializeField] float sparedLifeRetreatSpeed;
 
+    [SerializeField] float armor;
+
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         health = maxHealth;
         rb = GetComponent<Rigidbody2D>();
     }
@@ -24,6 +29,13 @@ public class EnemyUnit : UnitBase
         // Only attack if it hasn't been spared, to avoid bugs where enemies attack after being spared
         if (!hasBeenSpared)
         {
+            if(currentAttack.armorIncrease > 0)
+            {
+                armor += currentAttack.armorIncrease;
+            }
+
+            StartCoroutine(AttackAnimation());
+
             // Assign a random attack to the player
             AssignNewAttack(attacks[Random.Range(0, attacks.Count)]);
 
@@ -32,9 +44,18 @@ public class EnemyUnit : UnitBase
             currentTarget = CombatManager.Instance.playersInCombat[Random.Range(0, CombatManager.Instance.playersInCombat.Count)];
 
             // Make the current target take damage equal to the damage of the current attack
-            currentTarget.TakeDamage(currentAttack.damage);
+            currentTarget.TakeDamage(currentAttack.damage);        
         }
         
+    }
+
+    IEnumerator AttackAnimation()
+    {
+        anim.SetBool("Attacking", true);
+
+        yield return new WaitForSeconds(anim.GetNextAnimatorStateInfo(0).length);
+
+        anim.SetBool("Attacking", false);
     }
 
     // Check if the unit is clicked
@@ -57,6 +78,24 @@ public class EnemyUnit : UnitBase
         Experience.Instance.GainExperience(1, 11);
 
         Destroy(gameObject);
+    }
+
+    public override void TakeDamage(float amount)
+    {
+        amount -= armor;
+        if(armor > 0)
+        {
+            armor--;
+        }     
+
+        health -= amount;
+
+        StartCoroutine(SmoothHealthBar());
+
+        if (health <= 0)
+        {
+            Die();
+        }
     }
 
     // Caleld when you spare the life of an enemty

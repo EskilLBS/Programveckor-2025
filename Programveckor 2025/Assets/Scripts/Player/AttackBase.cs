@@ -6,7 +6,9 @@ using UnityEngine;
 public class AttackBase : ScriptableObject
 {
     public float damage;
+    public float armorIncrease;
     public string attackName = "New Attack";
 
     public bool selfDamage = false;
+
 }

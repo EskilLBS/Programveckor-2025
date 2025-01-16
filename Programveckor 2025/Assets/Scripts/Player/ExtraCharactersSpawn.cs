@@ -40,6 +40,9 @@ public class ExtraCharactersSpawn : MonoBehaviour
         float elapsedTime = 0;
         while(elapsedTime <= moveDuration)
         {
+            secondUnit.GetComponent<Animator>().SetBool("Walking", true);
+            thirdUnit.GetComponent<Animator>().SetBool("Walking", true);
+
             // Lerps the position of the units over move duration amount of time
             secondUnit.position = Vector3.Lerp(secondUnitStartPos.position, secondUnitEndPos.position, elapsedTime / moveDuration);
             thirdUnit.position = Vector3.Lerp(thirdUnitStartPos.position, thirdUnitEndPos.position, elapsedTime / moveDuration);
@@ -49,6 +52,7 @@ public class ExtraCharactersSpawn : MonoBehaviour
             yield return null;
         }
 
-
+        secondUnit.GetComponent<Animator>().SetBool("Walking", false);
+        thirdUnit.GetComponent<Animator>().SetBool("Walking", false);
     }
 }
