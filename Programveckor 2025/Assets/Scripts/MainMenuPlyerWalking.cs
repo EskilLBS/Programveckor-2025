@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player1Walking : MonoBehaviour
+public class MainMenuPlayerWalking : MonoBehaviour
 {
     Rigidbody2D rigidbody;
     public int speed;
