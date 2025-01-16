@@ -544,6 +544,7 @@ MonoBehaviour:
   healthBar: {fileID: 1918372866}
   maxHealth: 3
   health: 0
+  healthSmoothTime: 0.5
   hasBeenSpared: 0
   sparedLifeRetreatSpeed: 3
 --- !u!4 &114979333
@@ -1464,6 +1465,7 @@ MonoBehaviour:
   healthBar: {fileID: 946624470}
   maxHealth: 3
   health: 0
+  healthSmoothTime: 0.5
   hasBeenSpared: 0
   sparedLifeRetreatSpeed: 3
 --- !u!4 &262774124
@@ -2150,6 +2152,7 @@ MonoBehaviour:
   healthBar: {fileID: 1449250810}
   maxHealth: 8
   health: 0
+  healthSmoothTime: 0.5
   hasBeenSpared: 0
   sparedLifeRetreatSpeed: 3
 --- !u!212 &428179637
@@ -2351,7 +2354,7 @@ Transform:
   m_GameObject: {fileID: 474432387}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.55, y: 0.35, z: -2.11}
+  m_LocalPosition: {x: 2.54, y: 0.35, z: -2.11}
   m_LocalScale: {x: 35.7, y: 0.59, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2728,6 +2731,7 @@ MonoBehaviour:
   healthBar: {fileID: 1212450596}
   maxHealth: 3
   health: 0
+  healthSmoothTime: 0.5
   hasBeenSpared: 0
   sparedLifeRetreatSpeed: 3
 --- !u!212 &544197677
@@ -3809,6 +3813,7 @@ MonoBehaviour:
   healthBar: {fileID: 130774774}
   maxHealth: 3
   health: 0
+  healthSmoothTime: 0.5
   hasBeenSpared: 0
   sparedLifeRetreatSpeed: 3
 --- !u!4 &841056616
@@ -5019,6 +5024,7 @@ MonoBehaviour:
   healthBar: {fileID: 1506073180}
   maxHealth: 3
   health: 0
+  healthSmoothTime: 0.5
   hasBeenSpared: 0
   sparedLifeRetreatSpeed: 3
 --- !u!212 &976628500
@@ -5380,7 +5386,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 35.18, y: 4.64, z: -2.11}
-  m_LocalScale: {x: 29.5, y: 0.59, z: 1}
+  m_LocalScale: {x: 29.56, y: 0.59, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 739280100}
@@ -5800,6 +5806,7 @@ MonoBehaviour:
   playersInCombat: []
   currentPlayerUnit: {fileID: 0}
   enemyCharacters: []
+  currentPlayerMarker: {fileID: 0}
   playerMovement: {fileID: 2061742515}
   playerAttackUI: {fileID: 2019971436}
   spareButton: {fileID: 2019971435}
@@ -5959,7 +5966,7 @@ Transform:
   m_GameObject: {fileID: 1112515014}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55, y: 2.2151, z: 0}
+  m_LocalPosition: {x: 54.96, y: 2.2151, z: 0}
   m_LocalScale: {x: 10, y: 30.759106, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6157,6 +6164,7 @@ MonoBehaviour:
   healthBar: {fileID: 36359057}
   maxHealth: 8
   health: 0
+  healthSmoothTime: 0.5
   hasBeenSpared: 0
   sparedLifeRetreatSpeed: 3
 --- !u!4 &1204276464
@@ -6736,6 +6744,7 @@ MonoBehaviour:
   healthBar: {fileID: 448237340}
   maxHealth: 3
   health: 0
+  healthSmoothTime: 0.5
   hasBeenSpared: 0
   sparedLifeRetreatSpeed: 3
 --- !u!4 &1314452691
@@ -7159,6 +7168,7 @@ MonoBehaviour:
   healthBar: {fileID: 1759112613}
   maxHealth: 8
   health: 0
+  healthSmoothTime: 0.5
   hasBeenSpared: 0
   sparedLifeRetreatSpeed: 3
 --- !u!4 &1395407534
@@ -9037,6 +9047,7 @@ MonoBehaviour:
   healthBar: {fileID: 805217629}
   maxHealth: 5
   health: 0
+  healthSmoothTime: 0.5
   attackMult: 1
   attackIncreasePerLevel: 1.1
 --- !u!4 &1674662445
@@ -9249,6 +9260,7 @@ MonoBehaviour:
   healthBar: {fileID: 1635421062}
   maxHealth: 5
   health: 0
+  healthSmoothTime: 0.5
   attackMult: 1
   attackIncreasePerLevel: 1.1
 --- !u!4 &1745692241
@@ -9418,7 +9430,7 @@ Transform:
   m_GameObject: {fileID: 1746301181}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.64, y: -1.35, z: -2.11}
+  m_LocalPosition: {x: -32.65, y: -1.35, z: -2.11}
   m_LocalScale: {x: 34.7, y: 0.59, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10475,6 +10487,7 @@ MonoBehaviour:
   jumpHeight: 10
   topDownMovement: 0
   groundCheck: {fileID: 1695562917}
+  animator: {fileID: 0}
 --- !u!4 &2061742516
 Transform:
   m_ObjectHideFlags: 0
@@ -10514,6 +10527,7 @@ MonoBehaviour:
   healthBar: {fileID: 1674068040}
   maxHealth: 5
   health: 0
+  healthSmoothTime: 0.5
   attackMult: 1
   attackIncreasePerLevel: 1.1
 --- !u!114 &2061742518
@@ -10691,7 +10705,7 @@ Animator:
   m_GameObject: {fileID: 2061742514}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d2a7f269743735b4295ab5f029edc1b3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9dba65bc6c85b124790d4bf9ee352911, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -11750,6 +11764,7 @@ MonoBehaviour:
   healthBar: {fileID: 3909426882276706212}
   maxHealth: 3
   health: 0
+  healthSmoothTime: 0.5
   hasBeenSpared: 0
   sparedLifeRetreatSpeed: 3
 --- !u!114 &7775204210859388165
@@ -11770,6 +11785,7 @@ MonoBehaviour:
   healthBar: {fileID: 3909426882076752028}
   maxHealth: 3
   health: 0
+  healthSmoothTime: 0.5
   hasBeenSpared: 0
   sparedLifeRetreatSpeed: 3
 --- !u!222 &8494713216085299508
