@@ -8,8 +8,7 @@ using UnityEngine.SceneManagement;
 public class GoodOrBadDecision : MonoBehaviour
 {
     // Goodness and badness variables, used to determine if the player is good or evil
-    int evilness;
-    int goodness;
+    int karma;
 
     public static GoodOrBadDecision Instance;
 
@@ -34,22 +33,25 @@ public class GoodOrBadDecision : MonoBehaviour
 
     void Start()
     {
-        evilness = 0;
-        goodness = 0;
+        karma = 0;
     }
 
     // Called when a bad decision is made
     public void BadDecision(int increaseAmount)
     {
         //1 badness is added every time you make a bad decision
-        evilness += increaseAmount;
+        karma -= increaseAmount;
         print("Det var ett dåligt val!");
 
-        globalLight.color = colorChangeGradient.Evaluate(intensityMultiplier / evilness);
-        globalLight.intensity = intensityMultiplier / evilness;
+        if(karma < 0)
+        {
+            globalLight.color = colorChangeGradient.Evaluate(intensityMultiplier / -karma);
+            globalLight.intensity = intensityMultiplier / -karma;
+        }
+        
 
         //You get a warning after 3 bad decision
-        if (evilness == maximumEvilness)
+        if (karma == -maximumEvilness)
         {
             SceneManager.LoadScene(1);
         }
@@ -59,17 +61,17 @@ public class GoodOrBadDecision : MonoBehaviour
     public void GoodDecision(int increaseAmount)
     {
         //1 goodness is added every time you make a good decision
-        goodness += increaseAmount;
+        karma += increaseAmount;
         print("Det var ett bra val!");
 
         //You get a notification when you have made 3 good decisions
-        if (goodness == 3)
+        if (karma == 3)
         {
             print("Du har gjort flera bra val!!");
         }
 
         //After you make 4 good decisions, you save the world
-        if (goodness == 4)
+        if (karma == 4)
         {
             print("DU RÄDDADE VÄRLDEN!!");
         }

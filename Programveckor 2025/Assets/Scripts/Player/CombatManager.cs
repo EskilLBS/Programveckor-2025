@@ -106,6 +106,11 @@ public class CombatManager : MonoBehaviour
         // Set the combat state, the players in combat and enemies to fight
         currentCombatState = CombatState.Start;
 
+        if(playersInCombat.Count > 0)
+        {
+            playersInCombat.Clear();
+        }
+
         playersInCombat = new List<PlayerUnit>(playerCharacters); // Set "playersInCombat" to a new list because
                                                                   // otherwise it'll share the same memory as "playerCharacters
 
@@ -176,8 +181,10 @@ public class CombatManager : MonoBehaviour
 
         currentCombatState = CombatState.PlayerTurn;
 
+        List<PlayerUnit> playersInCombatTemp = new List<PlayerUnit>(playersInCombat);
+
         // Loop through the players and let them attack
-        foreach (PlayerUnit unit in playersInCombat)
+        foreach (PlayerUnit unit in playersInCombatTemp)
         {
             currentPlayerUnit = unit;
 
@@ -284,7 +291,7 @@ public class CombatManager : MonoBehaviour
 
         Debug.Log("You lose");
 
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
     // Called to set the current target and spawn a target marker on them
@@ -322,6 +329,7 @@ public class CombatManager : MonoBehaviour
         currentTargetMarker = Instantiate(new GameObject(), unit.transform.position, Quaternion.identity);
         SpriteRenderer spriteRenderer = currentTargetMarker.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = unit.GetComponent<SpriteRenderer>().sprite;
+        spriteRenderer.color = new Color(0, 0, 0, 0.7f);
         currentTargetMarker.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
         currentTargetMarker.transform.position += new Vector3(0, 0, 1);
     }
