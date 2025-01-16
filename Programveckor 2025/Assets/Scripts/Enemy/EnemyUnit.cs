@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyUnit : UnitBase
@@ -14,6 +15,8 @@ public class EnemyUnit : UnitBase
     [SerializeField] float sparedLifeRetreatSpeed;
 
     [SerializeField] float armor;
+
+    [SerializeField] bool finalBoss;
 
     // Start is called before the first frame update
     void Start()
@@ -81,14 +84,38 @@ public class EnemyUnit : UnitBase
     // On death remove enemy from lists, give xp to the player and add to the "badness" count
     public override void Die()
     {
+        if (finalBoss)
+        {
+            StartCoroutine(LoadEnding());
+        }
+
         CombatManager.Instance.RemoveEnemyFromList(this);
         CombatManager.Instance.SetCurrentTarget(null);
 
         GoodOrBadDecision.Instance.BadDecision(1);
 
-        Experience.Instance.GainExperience(1, 11);
+        Experience.Instance.GainExperience(5, 8);
 
-        Destroy(gameObject, .5f);
+        if (!finalBoss)
+        {
+            Destroy(gameObject, .5f);
+        }
+        
+    }
+
+    IEnumerator LoadEnding()
+    {
+        yield return new WaitForSeconds(2f);
+
+        if (GoodOrBadDecision.Instance.karma <= -GoodOrBadDecision.Instance.maximumEvilness)
+        {
+            SceneManager.LoadScene(3);
+        }
+        else
+        {
+            SceneManager.LoadScene(4);
+        }
+        
     }
 
     public override void TakeDamage(float amount)

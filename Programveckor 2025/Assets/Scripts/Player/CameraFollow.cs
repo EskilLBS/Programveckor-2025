@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour
 {
     // The object that should be tracked and the speed that it should be tracked at
     [SerializeField] Transform trackedObject;
-    [SerializeField] float trackingSpeed;
+    [SerializeField] float trackTime;
 
     [SerializeField] Transform middleObject;
 
@@ -18,7 +18,7 @@ public class CameraFollow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if(CombatManager.Instance.currentCombatState != CombatManager.CombatState.OutOfCombat)
         {
@@ -42,7 +42,7 @@ public class CameraFollow : MonoBehaviour
             Vector2 velocity = Vector2.zero;
 
             // Smoothdamp the position of the camera so that if follows the player smoothly
-            transform.position = Vector2.SmoothDamp(transform.position, trackedObject.position, ref velocity, trackingSpeed);
+            transform.position = Vector2.SmoothDamp(transform.position, trackedObject.position, ref velocity, trackTime);
             transform.position += new Vector3(0, 0, -10);
 
             trackedObject = middleObject;
@@ -54,7 +54,7 @@ public class CameraFollow : MonoBehaviour
             Vector2 velocity = Vector2.zero;
 
             // Smoothdamp the position of the camera so that if follows the player smoothly
-            transform.position = Vector2.SmoothDamp(transform.position, trackedObject.position, ref velocity, trackingSpeed);
+            transform.position = Vector2.SmoothDamp(transform.position, trackedObject.position, ref velocity, trackTime);
             transform.position += new Vector3(0, 0, -10);
         }    
     }

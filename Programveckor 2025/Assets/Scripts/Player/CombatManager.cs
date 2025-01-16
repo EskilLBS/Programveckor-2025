@@ -137,8 +137,6 @@ public class CombatManager : MonoBehaviour
         playerAttackUI.SetActive(true);
         playerMovement.SetPauseMovement(true);
 
-        Debug.Log("In ocmbat");
-
         StartCoroutine(PlayerTurn());
     }
 
@@ -175,9 +173,12 @@ public class CombatManager : MonoBehaviour
     // Perform the player turn
     IEnumerator PlayerTurn()
     {
-        currentPlayerMarker.SetActive(true);
+        if(enemyCharacters.Count == 0)
+        {
+            yield break;
+        }
 
-        Debug.Log("Player turn");
+        currentPlayerMarker.SetActive(true);
 
         // Set the player attack ui to active and set the correct combat state
         playerAttackUI.SetActive(true);
@@ -189,11 +190,17 @@ public class CombatManager : MonoBehaviour
         // Loop through the players and let them attack
         foreach (PlayerUnit unit in playersInCombatTemp)
         {
+            if (enemyCharacters.Count == 0)
+            {
+                yield break;
+            }
+
+            Debug.Log("Player turn");
             currentPlayerUnit = unit;
 
             currentPlayerMarker.transform.position = new Vector3(unit.transform.position.x, unit.transform.position.y + 2.2f, 0);
 
-            currentTurnText.text = unit.unitName + "'s turn";
+            currentTurnText.text = "";
 
             // Update the avaliable attacks
             PlayerAttackUI.Instance.UpdateOptions();
@@ -206,8 +213,6 @@ public class CombatManager : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
         }
-
-        Debug.Log("Enemy turn time");
 
         StartCoroutine(EnemyTurn());
     }
@@ -265,7 +270,6 @@ public class CombatManager : MonoBehaviour
         currentTurnText.gameObject.SetActive(false);
         playerAttackUI.SetActive(false);
 
-        Debug.Log("You won!");
         currentCombatState = CombatState.OutOfCombat;
 
         playerMovement.gameObject.SetActive(true);
@@ -297,9 +301,7 @@ public class CombatManager : MonoBehaviour
             unit.OnStartCombat();
         }
 
-        Debug.Log("You lose");
-
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     // Called to set the current target and spawn a target marker on them

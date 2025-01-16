@@ -21,7 +21,6 @@ public class PlayerUnit : UnitBase
             }
         }
 
-        Debug.Log(CombatManager.Instance.currentTarget.name + ": " + (CombatManager.Instance.currentTarget.health - currentAttack.damage));
         CombatManager.Instance.currentTarget.TakeDamage(currentAttack.damage * attackMult);        
     }
 
@@ -36,18 +35,29 @@ public class PlayerUnit : UnitBase
         attackMult = Mathf.Pow(attackIncreasePerLevel, Experience.Instance.playerLevel);
     }
 
+    public void FullHeal()
+    {
+        health = maxHealth;
+        SmoothHealthBar();
+    }
 
     // Initialize some values when combat starts
     public void OnStartCombat()
     {
+        if(health <= 0)
+        {
+            health = 1;
+        }
+
         if (!keepHealthAfterCombat)
         {
             health = maxHealth;
 
-            healthBar.value = health / maxHealth;
+            
         }
         healthBar.gameObject.SetActive(true);
-        
+
+        healthBar.value = health / maxHealth;
     }
 
     public void OnCombatEnd()

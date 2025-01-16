@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GoodOrBadDecision : MonoBehaviour
 {
     // Goodness and badness variables, used to determine if the player is good or evil
-    int karma;
+    [HideInInspector] public int karma;
 
     public static GoodOrBadDecision Instance;
 
@@ -17,7 +17,7 @@ public class GoodOrBadDecision : MonoBehaviour
     [SerializeField] Light2D globalLight;
     [SerializeField] float intensityMultiplier;
     [SerializeField] Gradient colorChangeGradient;
-    [SerializeField] int maximumEvilness;
+    public int maximumEvilness;
 
     private void Awake()
     {
@@ -48,12 +48,10 @@ public class GoodOrBadDecision : MonoBehaviour
             globalLight.color = colorChangeGradient.Evaluate(intensityMultiplier / -karma);
             globalLight.intensity = intensityMultiplier / -karma;
         }
-        
-
-        //You get a warning after 3 bad decision
-        if (karma == -maximumEvilness)
+        else
         {
-            SceneManager.LoadScene(1);
+            globalLight.color = colorChangeGradient.Evaluate(1);
+            globalLight.intensity = 1;
         }
     }
 

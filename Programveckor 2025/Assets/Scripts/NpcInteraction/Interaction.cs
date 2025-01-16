@@ -45,7 +45,7 @@ public class Interaction : MonoBehaviour
 
     private Coroutine currentTypingCoroutine;
     private Coroutine currentHideTextCoroutine;
-    
+
     void Update()
     {
         distanceX = playerBody.transform.position.x - npcBody.transform.position.x;
@@ -53,7 +53,7 @@ public class Interaction : MonoBehaviour
 
         if ((distanceX <= interactionDistance && distanceX >= -interactionDistance) && (distanceY <= interactionDistance && distanceY >= -interactionDistance)) //distance
         {
-            AnimateText("Hint: Press E to interact");
+            AnimateText("Press E to interact");
             if (Input.GetKeyDown(KeyCode.E) && !IsTyping && !hasAnswered)
             {
                 var (dialogueText, answer) = GetDialogueAndAnswer(CurrentDialogue);
@@ -116,7 +116,7 @@ public class Interaction : MonoBehaviour
         }
         CurrentDialogue += 1;
         IsTyping = false;
-        if (CurrentDialogue < 4)
+        if (CurrentDialogue < 5)
         {
             answerUi.transform.parent.gameObject.SetActive(true);
             cancelUi.transform.parent.gameObject.SetActive(true);
@@ -142,7 +142,7 @@ public class Interaction : MonoBehaviour
         }
         yield return new WaitForSeconds(0.7f);
         dialogueEndedUi.transform.parent.gameObject.SetActive(false);
-        currentHideTextCoroutine = null; 
+        currentHideTextCoroutine = null;
     }
     public void AnimateText(string message)
     {
@@ -186,9 +186,10 @@ public class Interaction : MonoBehaviour
     {
         Dictionary<int, (string dialogue, string answer)> texts = new Dictionary<int, (string, string)>
     {
-        {1, ("Hello there, it's nice to see you", "Hello, what were those monsters over there?")}, // Npc dialogue, your reply
-        {2, ("Oh those? Don't worry about it, you did the right thing by not killing them", "What do you mean?")},
-        {3, ("Eh, nothing really, you only made sure the world didn't explode", "ok")},
+        {1, ("Hello there Kami.", "Hello, what were those monsters over there?")}, // Npc dialogue, your reply
+        {2, ("Oh those? Don't worry about it, just make sure you don't kill too many", "What do you mean?")},
+        {3, ("Eh, nothing really, worst case the world explodes...", "Oh god, I might need some rest before continuing")},
+        {4, ("Hold still, I'll heal you up", "ok")},
         {10, ("Oh ok, bye.", "None")}
     };
 
@@ -204,6 +205,14 @@ public class Interaction : MonoBehaviour
 
     public void Answer()
     {
+        if(CurrentDialogue == 4)
+        {
+            foreach (PlayerUnit unit in CombatManager.Instance.playerCharacters)
+            {
+                unit.FullHeal();
+            }
+        }
+
         var (dialogueText, answer) = GetDialogueAndAnswer(CurrentDialogue);
         if (dialogueText != null)
         {
