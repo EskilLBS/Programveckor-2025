@@ -13,6 +13,12 @@ public class PlayerUnit : UnitBase
 
     public override void Attack()
     {      
+        if(currentAttack.healAmount > 0)
+        {
+            Heal(currentAttack.healAmount);
+            return;
+        }
+
         if(currentAttack.selfDamage == true)
         {
             if(Random.Range(0, 4) == 0)
@@ -23,8 +29,6 @@ public class PlayerUnit : UnitBase
             }
         }
 
-        Debug.Log("attack");
-
         StartCoroutine(AttackAnimation());
 
         CombatManager.Instance.currentTarget.TakeDamage(currentAttack.damage * attackMult);        
@@ -32,8 +36,6 @@ public class PlayerUnit : UnitBase
 
     IEnumerator AttackAnimation()
     {
-        Debug.Log("animation");
-
         anim.SetBool("Attacking", true);
 
         yield return new WaitForSeconds(anim.GetNextAnimatorStateInfo(0).length);

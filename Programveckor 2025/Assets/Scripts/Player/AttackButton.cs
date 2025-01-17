@@ -26,6 +26,12 @@ public class AttackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if(attack.healAmount > 0)
+        {
+            textElement.text = attack.healAmount + " healing";
+            return;
+        }
+
         if (attack.selfDamage)
         {
             textElement.text = Mathf.Round(attack.damage * damageMult * 10) / 10 + " damage\n25% chance to inflict damage on self instead";

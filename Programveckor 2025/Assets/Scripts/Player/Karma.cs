@@ -48,6 +48,11 @@ public class Karma : MonoBehaviour
         {
             globalLight.color = colorChangeGradient.Evaluate(intensityMultiplier / -karma);
             globalLight.intensity = intensityMultiplier / -karma;
+
+            if(globalLight.intensity < 0.3f)
+            {
+                globalLight.intensity = 0.3f;
+            }
         }
         else
         {

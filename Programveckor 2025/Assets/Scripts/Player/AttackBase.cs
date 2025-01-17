@@ -9,6 +9,8 @@ public class AttackBase : ScriptableObject
     public float armorIncrease;
     public string attackName = "New Attack";
 
+    public float healAmount;
+
     public bool selfDamage = false;
 
 }
