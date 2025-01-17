@@ -181,8 +181,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a2603f479b1741a418970b63b4ba511a, type: 2}
-  m_sharedMaterial: {fileID: -9140213176388939597, guid: a2603f479b1741a418970b63b4ba511a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8465ed5c9e0597b41ab275ca4f8de937, type: 2}
+  m_sharedMaterial: {fileID: -4404519140188525257, guid: 8465ed5c9e0597b41ab275ca4f8de937, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5227,8 +5227,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a2603f479b1741a418970b63b4ba511a, type: 2}
-  m_sharedMaterial: {fileID: -9140213176388939597, guid: a2603f479b1741a418970b63b4ba511a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8465ed5c9e0597b41ab275ca4f8de937, type: 2}
+  m_sharedMaterial: {fileID: -4404519140188525257, guid: 8465ed5c9e0597b41ab275ca4f8de937, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5508,8 +5508,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Kami's Path
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a2603f479b1741a418970b63b4ba511a, type: 2}
-  m_sharedMaterial: {fileID: -9140213176388939597, guid: a2603f479b1741a418970b63b4ba511a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8465ed5c9e0597b41ab275ca4f8de937, type: 2}
+  m_sharedMaterial: {fileID: -4404519140188525257, guid: 8465ed5c9e0597b41ab275ca4f8de937, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
