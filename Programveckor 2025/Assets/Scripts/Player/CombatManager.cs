@@ -77,6 +77,11 @@ public class CombatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(currentCombatState == CombatState.OutOfCombat)
+        {
+            playerAttackUI.SetActive(false);
+        }
+
         if(currentCombatState == CombatState.PlayerTurn)
         {
             currentPlayerMarker.transform.position = new Vector3(currentPlayerUnit.transform.position.x, currentPlayerUnit.transform.position.y + 2.2f, 0);
@@ -119,6 +124,7 @@ public class CombatManager : MonoBehaviour
 
         foreach (PlayerUnit unit in playerCharacters)
         {
+            unit.gameObject.SetActive(true);
             unit.OnStartCombat();
         }
 
