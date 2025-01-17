@@ -190,6 +190,7 @@ public class CombatManager : MonoBehaviour
         // Loop through the players and let them attack
         foreach (PlayerUnit unit in playersInCombatTemp)
         {
+            
             if (enemyCharacters.Count == 0)
             {
                 yield break;
@@ -211,7 +212,12 @@ public class CombatManager : MonoBehaviour
             // Wait until the player has made a decision on what to do, and then wait a second
             yield return new WaitUntil(() => awaitingPlayerInput == false);
 
+            playerAttackUI.SetActive(false);
+
             yield return new WaitForSeconds(1f);
+
+            playerAttackUI.SetActive(true);
+
         }
 
         StartCoroutine(EnemyTurn());

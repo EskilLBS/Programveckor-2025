@@ -24,6 +24,11 @@ public class PlayerUnit : UnitBase
         CombatManager.Instance.currentTarget.TakeDamage(currentAttack.damage * attackMult);        
     }
 
+    void Heal(float amount)
+    {
+        TakeDamage(-amount);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +43,14 @@ public class PlayerUnit : UnitBase
     public void FullHeal()
     {
         health = maxHealth;
-        SmoothHealthBar();
+        StartCoroutine(SmoothHealthBar());
+    }
+
+    private void OnEnable()
+    {
+        healthBar.value = health / maxHealth;
+
+        StartCoroutine(SmoothHealthBar());
     }
 
     // Initialize some values when combat starts
@@ -58,6 +70,8 @@ public class PlayerUnit : UnitBase
         healthBar.gameObject.SetActive(true);
 
         healthBar.value = health / maxHealth;
+
+        StartCoroutine(SmoothHealthBar());
     }
 
     public void OnCombatEnd()
@@ -68,6 +82,7 @@ public class PlayerUnit : UnitBase
     public void IncreaseMaxHealth()
     {
         maxHealth++;
+        health++;
     }
 
     // Remove the unit from the "playersInCombat" list and disable the object

@@ -12,6 +12,8 @@ public class Experience : MonoBehaviour
 
     [SerializeField] int levelUpThreshold;
     [SerializeField] Slider xpSlider;
+
+    [SerializeField] GameObject levelUpUI;
     public int playerLevel { get; private set; }
 
     public Experience()
@@ -60,9 +62,23 @@ public class Experience : MonoBehaviour
         levelText.text = "Level: " + playerLevel;
         xpSlider.value = xp;
 
+        StartCoroutine(FlashLevelUpUI());
+
         foreach (PlayerUnit playerUnit in CombatManager.Instance.playerCharacters)
         {
             playerUnit.IncreaseMaxHealth();
+        }
+    }
+
+    IEnumerator FlashLevelUpUI()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            levelUpUI.SetActive(true);
+
+            yield return new WaitForSeconds(0.4f);
+
+            levelUpUI.SetActive(false);
         }
     }
 }

@@ -4,20 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class GoodOrBadDecision : MonoBehaviour
+public class Karma : MonoBehaviour
 {
     // Goodness and badness variables, used to determine if the player is good or evil
     [HideInInspector] public int karma;
 
-    public static GoodOrBadDecision Instance;
+    public static Karma Instance;
 
     [SerializeField] GameObject badDecisionExplosion;
 
     [SerializeField] Light2D globalLight;
     [SerializeField] float intensityMultiplier;
     [SerializeField] Gradient colorChangeGradient;
-    public int maximumEvilness;
+    [SerializeField] Slider karmaBar;
+    public float maximumEvilness;
 
     private void Awake()
     {
@@ -41,7 +43,6 @@ public class GoodOrBadDecision : MonoBehaviour
     {
         //1 badness is added every time you make a bad decision
         karma -= increaseAmount;
-        print("Det var ett dåligt val!");
 
         if(karma < 0)
         {
@@ -53,6 +54,14 @@ public class GoodOrBadDecision : MonoBehaviour
             globalLight.color = colorChangeGradient.Evaluate(1);
             globalLight.intensity = 1;
         }
+
+        Debug.Log(karma);
+
+        if(karma < 0)
+        {
+            karmaBar.value = -karma / maximumEvilness;
+        }
+        
     }
 
     // Called when a good decision is made
@@ -60,18 +69,10 @@ public class GoodOrBadDecision : MonoBehaviour
     {
         //1 goodness is added every time you make a good decision
         karma += increaseAmount;
-        print("Det var ett bra val!");
 
-        //You get a notification when you have made 3 good decisions
-        if (karma == 3)
+        if (karma < 0)
         {
-            print("Du har gjort flera bra val!!");
-        }
-
-        //After you make 4 good decisions, you save the world
-        if (karma == 4)
-        {
-            print("DU RÄDDADE VÄRLDEN!!");
+            karmaBar.value = -karma / maximumEvilness;
         }
     }
 }

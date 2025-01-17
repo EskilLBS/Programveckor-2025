@@ -22,12 +22,14 @@ public class Interaction : MonoBehaviour
     [SerializeField] Button answerB;
     [SerializeField] Button cancelB;
 
+    [SerializeField] GameObject karmBar;
+
     string playerLeft = "Bye";
     float distanceX;
     float distanceY;
 
     bool IsTyping = false;
-    int CurrentDialogue = 1;
+    int currentDialogue = 1;
 
     public float fadeDuration = 1.0f;
     bool hasAnswered = false;
@@ -56,7 +58,7 @@ public class Interaction : MonoBehaviour
             AnimateText("Press E to interact");
             if (Input.GetKeyDown(KeyCode.E) && !IsTyping && !hasAnswered)
             {
-                var (dialogueText, answer) = GetDialogueAndAnswer(CurrentDialogue);
+                var (dialogueText, answer) = GetDialogueAndAnswer(currentDialogue);
                 if (dialogueText != null)
                 {
                     dialogueStarted = true;
@@ -89,7 +91,7 @@ public class Interaction : MonoBehaviour
                     currentHideTextCoroutine = StartCoroutine(HideText(playerLeft));
                 }
                 dialogue.transform.parent.gameObject.SetActive(false);
-                CurrentDialogue = 1;
+                currentDialogue = 1;
                 answerUi.transform.parent.gameObject.SetActive(false);
                 cancelUi.transform.parent.gameObject.SetActive(false);
                 answerB.gameObject.SetActive(false);
@@ -114,9 +116,9 @@ public class Interaction : MonoBehaviour
             dialogue.text += letter;
             yield return new WaitForSeconds(0.05f);
         }
-        CurrentDialogue += 1;
+        currentDialogue += 1;
         IsTyping = false;
-        if (CurrentDialogue < 5)
+        if (currentDialogue < 5)
         {
             answerUi.transform.parent.gameObject.SetActive(true);
             cancelUi.transform.parent.gameObject.SetActive(true);
@@ -205,7 +207,12 @@ public class Interaction : MonoBehaviour
 
     public void Answer()
     {
-        if(CurrentDialogue == 4)
+        if (currentDialogue == 2)
+        {
+            karmBar.SetActive(true);
+        }
+
+        if(currentDialogue == 4)
         {
             foreach (PlayerUnit unit in CombatManager.Instance.playerCharacters)
             {
@@ -213,7 +220,7 @@ public class Interaction : MonoBehaviour
             }
         }
 
-        var (dialogueText, answer) = GetDialogueAndAnswer(CurrentDialogue);
+        var (dialogueText, answer) = GetDialogueAndAnswer(currentDialogue);
         if (dialogueText != null)
         {
             dialogueStarted = true;
@@ -234,8 +241,8 @@ public class Interaction : MonoBehaviour
 
     public void Cancel()
     {
-        CurrentDialogue = 10;
-        var (dialogueText, answer) = GetDialogueAndAnswer(CurrentDialogue);
+        currentDialogue = 10;
+        var (dialogueText, answer) = GetDialogueAndAnswer(currentDialogue);
         if (dialogueText != null)
         {
             dialogueStarted = true;

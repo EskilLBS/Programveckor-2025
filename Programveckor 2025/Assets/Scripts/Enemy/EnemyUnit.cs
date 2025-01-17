@@ -92,7 +92,7 @@ public class EnemyUnit : UnitBase
         CombatManager.Instance.RemoveEnemyFromList(this);
         CombatManager.Instance.SetCurrentTarget(null);
 
-        GoodOrBadDecision.Instance.BadDecision(1);
+        Karma.Instance.BadDecision(1);
 
         Experience.Instance.GainExperience(5, 8);
 
@@ -107,7 +107,7 @@ public class EnemyUnit : UnitBase
     {
         yield return new WaitForSeconds(2f);
 
-        if (GoodOrBadDecision.Instance.karma <= -GoodOrBadDecision.Instance.maximumEvilness)
+        if (Karma.Instance.karma <= -Karma.Instance.maximumEvilness)
         {
             SceneManager.LoadScene(3);
         }
@@ -142,6 +142,6 @@ public class EnemyUnit : UnitBase
         Destroy(gameObject);
         Destroy(CombatManager.Instance.currentTargetMarker);
 
-        GoodOrBadDecision.Instance.GoodDecision(1);
+        Karma.Instance.GoodDecision(1);
     }
 }
