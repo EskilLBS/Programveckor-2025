@@ -71,7 +71,7 @@ public class CombatManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        charactersSpawn = GameObject.Find("Player Unit 1").GetComponent<ExtraCharactersSpawn>();
+        charactersSpawn = GameObject.Find("SpearCharacter").GetComponent<ExtraCharactersSpawn>();
     }
 
     // Update is called once per frame

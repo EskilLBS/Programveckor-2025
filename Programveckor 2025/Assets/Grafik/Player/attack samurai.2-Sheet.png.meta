@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cc4980021f4fb764e8c1dc9e73b1c694
+guid: cfe60848cbd98f54fb5e545e6fe9cc20
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mini game fighting-Sheet_0
+      name: attack samurai.2-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90bb98a3dc2af3349bc9b1ed0bc1e86f
-      internalID: 1614060253
+      spriteID: 3da4ae7de4460124d8c4ca4526a40a62
+      internalID: -191730582
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mini game fighting-Sheet_1
+      name: attack samurai.2-Sheet_1
       rect:
         serializedVersion: 2
         x: 100
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f71e53e9310fcea46ad1a03d5c532fb2
-      internalID: -79212085
+      spriteID: 3337002c3a3502940b9041e2d749fed6
+      internalID: -1321801991
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mini game fighting-Sheet_2
+      name: attack samurai.2-Sheet_2
       rect:
         serializedVersion: 2
         x: 200
@@ -192,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d50a31f27e4612140b30b366d88acfb8
-      internalID: 1628190963
+      spriteID: 65619dae5ac78354da2700c9347b09d9
+      internalID: 1791537961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mini game fighting-Sheet_3
+      name: attack samurai.2-Sheet_3
       rect:
         serializedVersion: 2
         x: 300
@@ -213,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88656aad260896840b756ab953594382
-      internalID: 86598719
+      spriteID: cde48d2c82574044ab75b0d1504335e2
+      internalID: 331591475
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mini game fighting-Sheet_4
+      name: attack samurai.2-Sheet_4
       rect:
         serializedVersion: 2
         x: 400
@@ -234,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f91df6e04198f0e45a512d50b92b1f3d
-      internalID: -457017987
+      spriteID: 860815c81f37c5d499b1ca4d44d81dfc
+      internalID: 1463089672
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mini game fighting-Sheet_5
+      name: attack samurai.2-Sheet_5
       rect:
         serializedVersion: 2
         x: 500
@@ -255,14 +255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f9892482576d7e478c39b070bf3637d
-      internalID: 540769776
+      spriteID: ceb66c7513d6aa4459f763e35e4eccf4
+      internalID: 503653801
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mini game fighting-Sheet_6
+      name: attack samurai.2-Sheet_6
       rect:
         serializedVersion: 2
         x: 600
@@ -276,8 +276,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf117789c653e0243bf77da039aec76e
-      internalID: -1568448345
+      spriteID: abc68826da36fc74aad145a78a4774cc
+      internalID: 412396557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: attack samurai.2-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 0
+        width: 100
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d182dff43107754b940f2e6076fed3d
+      internalID: -1425906849
       vertices: []
       indices: 
       edges: []
@@ -293,13 +314,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Mini game fighting-Sheet_0: 1614060253
-      Mini game fighting-Sheet_1: -79212085
-      Mini game fighting-Sheet_2: 1628190963
-      Mini game fighting-Sheet_3: 86598719
-      Mini game fighting-Sheet_4: -457017987
-      Mini game fighting-Sheet_5: 540769776
-      Mini game fighting-Sheet_6: -1568448345
+      attack samurai.2-Sheet_0: -191730582
+      attack samurai.2-Sheet_1: -1321801991
+      attack samurai.2-Sheet_2: 1791537961
+      attack samurai.2-Sheet_3: 331591475
+      attack samurai.2-Sheet_4: 1463089672
+      attack samurai.2-Sheet_5: 503653801
+      attack samurai.2-Sheet_6: 412396557
+      attack samurai.2-Sheet_7: -1425906849
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

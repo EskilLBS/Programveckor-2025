@@ -9,19 +9,36 @@ public class PlayerUnit : UnitBase
 
     [SerializeField] bool keepHealthAfterCombat = false;
 
+    [SerializeField] Animator anim;
+
     public override void Attack()
-    {
-        
+    {      
         if(currentAttack.selfDamage == true)
         {
             if(Random.Range(0, 4) == 0)
             {
                 TakeDamage(currentAttack.damage * 0.5f);
+                StartCoroutine(AttackAnimation());
                 return;
             }
         }
 
+        Debug.Log("attack");
+
+        StartCoroutine(AttackAnimation());
+
         CombatManager.Instance.currentTarget.TakeDamage(currentAttack.damage * attackMult);        
+    }
+
+    IEnumerator AttackAnimation()
+    {
+        Debug.Log("animation");
+
+        anim.SetBool("Attacking", true);
+
+        yield return new WaitForSeconds(anim.GetNextAnimatorStateInfo(0).length);
+
+        anim.SetBool("Attacking", false);
     }
 
     void Heal(float amount)

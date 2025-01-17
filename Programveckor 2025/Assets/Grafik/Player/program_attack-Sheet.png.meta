@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cc4980021f4fb764e8c1dc9e73b1c694
+guid: 0fce2103857e94f4382ea8f6d369815e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mini game fighting-Sheet_0
+      name: program_attack-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 100
-        height: 90
+        width: 80
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90bb98a3dc2af3349bc9b1ed0bc1e86f
-      internalID: 1614060253
+      spriteID: 8af4e33e27f8f0047a4b5e78147cf3aa
+      internalID: -421612336
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mini game fighting-Sheet_1
+      name: program_attack-Sheet_1
       rect:
         serializedVersion: 2
-        x: 100
+        x: 80
         y: 0
-        width: 100
-        height: 90
+        width: 80
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f71e53e9310fcea46ad1a03d5c532fb2
-      internalID: -79212085
+      spriteID: c65e6e00627ff7c4796eff12350e32fd
+      internalID: 1242177426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mini game fighting-Sheet_2
+      name: program_attack-Sheet_2
       rect:
         serializedVersion: 2
-        x: 200
+        x: 160
         y: 0
-        width: 100
-        height: 90
+        width: 80
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d50a31f27e4612140b30b366d88acfb8
-      internalID: 1628190963
+      spriteID: c7520285b1f60534883930be6803e833
+      internalID: 1090849793
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mini game fighting-Sheet_3
+      name: program_attack-Sheet_3
       rect:
         serializedVersion: 2
-        x: 300
+        x: 240
         y: 0
-        width: 100
-        height: 90
+        width: 80
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +213,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88656aad260896840b756ab953594382
-      internalID: 86598719
+      spriteID: 59dde7e534fa05c448ed227772396d34
+      internalID: 135326449
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mini game fighting-Sheet_4
+      name: program_attack-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fc6cb47e264f2648a26b840913c5fdf
+      internalID: 2132356170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: program_attack-Sheet_5
       rect:
         serializedVersion: 2
         x: 400
         y: 0
-        width: 100
-        height: 90
+        width: 80
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +255,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f91df6e04198f0e45a512d50b92b1f3d
-      internalID: -457017987
+      spriteID: 7056de4ff0b491f4cadc58a077e91867
+      internalID: 1302846527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mini game fighting-Sheet_5
+      name: program_attack-Sheet_6
       rect:
         serializedVersion: 2
-        x: 500
+        x: 480
         y: 0
-        width: 100
-        height: 90
+        width: 80
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,29 +276,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f9892482576d7e478c39b070bf3637d
-      internalID: 540769776
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mini game fighting-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 0
-        width: 100
-        height: 90
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bf117789c653e0243bf77da039aec76e
-      internalID: -1568448345
+      spriteID: 689d3ec6d79a2c94397fe2f83c05bd7a
+      internalID: 1384455159
       vertices: []
       indices: 
       edges: []
@@ -293,13 +293,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Mini game fighting-Sheet_0: 1614060253
-      Mini game fighting-Sheet_1: -79212085
-      Mini game fighting-Sheet_2: 1628190963
-      Mini game fighting-Sheet_3: 86598719
-      Mini game fighting-Sheet_4: -457017987
-      Mini game fighting-Sheet_5: 540769776
-      Mini game fighting-Sheet_6: -1568448345
+      program_attack-Sheet_0: -421612336
+      program_attack-Sheet_1: 1242177426
+      program_attack-Sheet_2: 1090849793
+      program_attack-Sheet_3: 135326449
+      program_attack-Sheet_4: 2132356170
+      program_attack-Sheet_5: 1302846527
+      program_attack-Sheet_6: 1384455159
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
