@@ -77,18 +77,18 @@ public class CombatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentCombatState == CombatState.OutOfCombat)
+        if (currentCombatState == CombatState.OutOfCombat)
         {
             playerAttackUI.SetActive(false);
         }
 
-        if(currentCombatState == CombatState.PlayerTurn)
+        if (currentCombatState == CombatState.PlayerTurn)
         {
             currentPlayerMarker.transform.position = new Vector3(currentPlayerUnit.transform.position.x, currentPlayerUnit.transform.position.y + 2.2f, 0);
         }
 
         // A bunch of checks to see if the player has won or lost
-        if(enemyCharacters.Count <= 0 && currentCombatState != CombatState.OutOfCombat)
+        if (enemyCharacters.Count <= 0 && currentCombatState != CombatState.OutOfCombat)
         {
             currentCombatState = CombatState.Win;
         }
@@ -103,13 +103,13 @@ public class CombatManager : MonoBehaviour
             Win();
         }
 
-        if(currentCombatState == CombatState.Lose)
+        if (currentCombatState == CombatState.Lose)
         {
             Lose();
         }
     }
 
-    
+
 
     // Set up the start of combat
     public void StartCombat(List<EnemyUnit> enemiesToFight)
@@ -163,14 +163,14 @@ public class CombatManager : MonoBehaviour
             currentPlayerUnit.Attack();
 
             // If there is still a target, meaning it didn't die, check if it's health is 1 or less and then enable the spare button
-            if(currentTarget != null)
+            if (currentTarget != null)
             {
                 if (currentTarget.health <= 1)
                 {
                     spareButton.SetActive(true);
                 }
             }
-            
+
 
             awaitingPlayerInput = false;
         }
@@ -179,7 +179,7 @@ public class CombatManager : MonoBehaviour
     // Perform the player turn
     IEnumerator PlayerTurn()
     {
-        if(enemyCharacters.Count == 0)
+        if (enemyCharacters.Count == 0)
         {
             yield break;
         }
@@ -196,7 +196,8 @@ public class CombatManager : MonoBehaviour
         // Loop through the players and let them attack
         foreach (PlayerUnit unit in playersInCombatTemp)
         {
-            
+            spareButton.SetActive(false);
+
             if (enemyCharacters.Count == 0)
             {
                 yield break;
@@ -234,7 +235,7 @@ public class CombatManager : MonoBehaviour
     {
         currentPlayerMarker.SetActive(false);
 
-        if(currentCombatState == CombatState.EnemyTurn)
+        if (currentCombatState == CombatState.EnemyTurn)
         {
             yield break;
         }
@@ -263,7 +264,7 @@ public class CombatManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
-       
+
         StartCoroutine(PlayerTurn());
     }
 
@@ -318,9 +319,9 @@ public class CombatManager : MonoBehaviour
 
     // Called to set the current target and spawn a target marker on them
     public void SetCurrentTarget(UnitBase unit)
-    {  
+    {
         // Return if the player isn't in combat
-        if(currentCombatState == CombatState.OutOfCombat)
+        if (currentCombatState == CombatState.OutOfCombat)
         {
             return;
         }
@@ -337,7 +338,7 @@ public class CombatManager : MonoBehaviour
 
         // Set the "spareButton" to active if the current targets health is 1 or less, to allow sparing their life
         // otherwise we disable it
-        if(currentTarget.health <= 1)
+        if (currentTarget.health <= 1)
         {
             spareButton.SetActive(true);
         }
@@ -345,7 +346,7 @@ public class CombatManager : MonoBehaviour
         {
             spareButton.SetActive(false);
         }
-       
+
         // Spawn a target marker and set it's sprite to the same one as the current target
         // we also set the scale to be a bit bigger than the target, to make sure that the target marker is visible
         currentTargetMarker = Instantiate(new GameObject(), unit.transform.position, Quaternion.identity);
@@ -368,7 +369,7 @@ public class CombatManager : MonoBehaviour
                 SetCurrentTarget(enemyCharacters[0]);
             }
 
-            if(currentTarget.health <= 1)
+            if (currentTarget.health <= 1)
             {
                 // Set the enemy state to spared, call the OnSpared functino and then remove them from the enemy list
                 currentTarget.GetComponent<EnemyUnit>().hasBeenSpared = true;
