@@ -18,6 +18,10 @@ public class EnemyUnit : UnitBase
 
     [SerializeField] bool finalBoss;
 
+    [SerializeField] bool moveOnAttack;
+
+    UnitBase currentTarget;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +36,6 @@ public class EnemyUnit : UnitBase
         // Only attack if it hasn't been spared, to avoid bugs where enemies attack after being spared
         if (!hasBeenSpared)
         {
-            
             
 
             // Assign a random attack to the player
@@ -54,8 +57,13 @@ public class EnemyUnit : UnitBase
                 StartCoroutine(AttackAnimation("Attacking"));
 
                 // Set "currentTarget" to a random player unit
-                UnitBase currentTarget;
+                
                 currentTarget = CombatManager.Instance.playersInCombat[Random.Range(0, CombatManager.Instance.playersInCombat.Count)];
+
+                if (moveOnAttack)
+                {
+                    StartCoroutine(MoveOnAttack());
+                }
 
                 // Make the current target take damage equal to the damage of the current attack
                 currentTarget.TakeDamage(currentAttack.damage);
@@ -70,6 +78,41 @@ public class EnemyUnit : UnitBase
         yield return new WaitForSeconds(anim.GetNextAnimatorStateInfo(0).length);
 
         anim.SetBool(animBoolName, false);
+    }
+
+    IEnumerator MoveOnAttack()
+    {
+        rb.gravityScale = 0;
+        GetComponent<Collider2D>().isTrigger = true;
+
+        float elapsedTime = 0;
+
+        Vector3 originalPosition = transform.position;
+
+        while (elapsedTime < .25f)
+        {
+            transform.position = Vector3.Lerp(transform.position, 
+                new Vector3(currentTarget.transform.position.x, transform.position.y, transform.position.z),
+                elapsedTime / 0.25f);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        elapsedTime = 0;
+
+        while (elapsedTime < .25f)
+        {
+            transform.position = Vector3.Lerp(transform.position,
+                new Vector3(originalPosition.x, originalPosition.y, originalPosition.z),
+                elapsedTime / 0.25f);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        rb.gravityScale = 1;
+        GetComponent<Collider2D>().isTrigger = false;
     }
 
     // Check if the unit is clicked
