@@ -12,6 +12,22 @@ public class CameraFollow : MonoBehaviour
 
     Transform playerTransform;
 
+    public bool stopMovement = false;
+
+    public static CameraFollow Instance;
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
     private void Start()
     {
         playerTransform = trackedObject;
@@ -20,42 +36,46 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if(CombatManager.Instance.currentCombatState != CombatManager.CombatState.OutOfCombat)
+        if (!stopMovement)
         {
-            float biggestDistance = 0;
-
-            foreach (PlayerUnit playerUnit in CombatManager.Instance.playerCharacters)
+            if (CombatManager.Instance.currentCombatState != CombatManager.CombatState.OutOfCombat)
             {
-                foreach (EnemyUnit enemyUnit in CombatManager.Instance.enemyCharacters)
-                {
-                    if(Vector2.Distance(playerUnit.transform.position, enemyUnit.transform.position) > biggestDistance)
-                    {
-                        biggestDistance = Vector2.Distance(playerUnit.transform.position, enemyUnit.transform.position);
+                float biggestDistance = 0;
 
-                        middleObject.position =
-                            new Vector2((playerUnit.transform.position.x + enemyUnit.transform.position.x) / 2,
-                            middleObject.position.y);
+                foreach (PlayerUnit playerUnit in CombatManager.Instance.playerCharacters)
+                {
+                    foreach (EnemyUnit enemyUnit in CombatManager.Instance.enemyCharacters)
+                    {
+                        if (Vector2.Distance(playerUnit.transform.position, enemyUnit.transform.position) > biggestDistance)
+                        {
+                            biggestDistance = Vector2.Distance(playerUnit.transform.position, enemyUnit.transform.position);
+
+                            middleObject.position =
+                                new Vector2((playerUnit.transform.position.x + enemyUnit.transform.position.x) / 2,
+                                middleObject.position.y);
+                        }
                     }
                 }
+
+                Vector2 velocity = Vector2.zero;
+
+                // Smoothdamp the position of the camera so that if follows the player smoothly
+                transform.position = Vector2.SmoothDamp(transform.position, trackedObject.position, ref velocity, trackTime);
+                transform.position += new Vector3(0, 0, -10);
+
+                trackedObject = middleObject;
             }
+            else
+            {
 
-            Vector2 velocity = Vector2.zero;
+                trackedObject = playerTransform;
+                Vector2 velocity = Vector2.zero;
 
-            // Smoothdamp the position of the camera so that if follows the player smoothly
-            transform.position = Vector2.SmoothDamp(transform.position, trackedObject.position, ref velocity, trackTime);
-            transform.position += new Vector3(0, 0, -10);
-
-            trackedObject = middleObject;
+                // Smoothdamp the position of the camera so that if follows the player smoothly
+                transform.position = Vector2.SmoothDamp(transform.position, trackedObject.position, ref velocity, trackTime);
+                transform.position += new Vector3(0, 0, -10);
+            }
         }
-        else
-        {
-
-            trackedObject = playerTransform;
-            Vector2 velocity = Vector2.zero;
-
-            // Smoothdamp the position of the camera so that if follows the player smoothly
-            transform.position = Vector2.SmoothDamp(transform.position, trackedObject.position, ref velocity, trackTime);
-            transform.position += new Vector3(0, 0, -10);
-        }    
+        
     }
 }

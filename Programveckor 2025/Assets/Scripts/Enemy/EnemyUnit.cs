@@ -84,6 +84,7 @@ public class EnemyUnit : UnitBase
     {
         rb.gravityScale = 0;
         GetComponent<BoxCollider2D>().enabled = false;
+        CameraFollow.Instance.stopMovement = true;
 
         float elapsedTime = 0;
 
@@ -113,6 +114,7 @@ public class EnemyUnit : UnitBase
 
         rb.gravityScale = 1;
         GetComponent<BoxCollider2D>().enabled = true;
+        CameraFollow.Instance.stopMovement = false;
     }
 
     // Check if the unit is clicked
