@@ -83,7 +83,7 @@ public class EnemyUnit : UnitBase
     IEnumerator MoveOnAttack()
     {
         rb.gravityScale = 0;
-        GetComponent<Collider2D>().isTrigger = true;
+        GetComponent<BoxCollider2D>().enabled = false;
 
         float elapsedTime = 0;
 
@@ -112,7 +112,7 @@ public class EnemyUnit : UnitBase
         }
 
         rb.gravityScale = 1;
-        GetComponent<Collider2D>().isTrigger = false;
+        GetComponent<BoxCollider2D>().enabled = true;
     }
 
     // Check if the unit is clicked
