@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Animator animator;
 
+    [SerializeField] GameObject walkEffect;
+
     public bool pauseMovement { get; private set; }
 
     // Start is called before the first frame update
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 animator.SetBool("Walking", true);
+                walkEffect.GetComponent<ParticleSystem>().enableEmission = true;
 
                 // Get the input on the horizontal axis and use that as a movement vector
                 rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
@@ -46,15 +49,18 @@ public class PlayerMovement : MonoBehaviour
                 if(rb.velocity.x < 0)
                 {
                     animator.gameObject.transform.localScale = new Vector3(-1, 1, 1);
+                    walkEffect.transform.rotation = new Quaternion(0, 180, 0,0 );
                 }
                 else if(rb.velocity.x > 0)
                 {
                     animator.gameObject.transform.localScale = new Vector3(1, 1, 1);
+                    walkEffect.transform.rotation = new Quaternion(0, 0, 0, 0);
                 }
 
                 if(Input.GetAxisRaw("Horizontal") == 0)
                 {
                     animator.SetBool("Walking", false);
+                    walkEffect.GetComponent<ParticleSystem>().enableEmission = false;
                 }
 
                 if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
@@ -68,7 +74,13 @@ public class PlayerMovement : MonoBehaviour
         {
             // Make the player stand still if movement should be paused, ex. in combat
             rb.velocity = new Vector2(0, rb.velocity.y);
+            walkEffect.GetComponent<ParticleSystem>().enableEmission = false;
             animator.SetBool("Walking", false);
+        }
+
+        if (!GroundCheck())
+        {
+            walkEffect.GetComponent<ParticleSystem>().enableEmission = false;
         }
 
 
