@@ -26,6 +26,8 @@ public class CameraFollow : MonoBehaviour
         {
             Destroy(this);
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()

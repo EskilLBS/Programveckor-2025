@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerUnit : UnitBase
@@ -52,6 +53,18 @@ public class PlayerUnit : UnitBase
     void Start()
     {
         health = maxHealth;
+
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        if(level == 5)
+        {
+            Vector3 startPos = GameObject.Find("PlayerSpawnPosition").transform.position;
+
+            transform.position = startPos;
+        }
     }
 
     private void Update()

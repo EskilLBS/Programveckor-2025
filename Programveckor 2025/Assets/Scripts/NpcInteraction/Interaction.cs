@@ -50,6 +50,10 @@ public class Interaction : MonoBehaviour
 
     void Update()
     {
+        if(npcBody == null)
+        {
+            return;
+        }
         distanceX = playerBody.transform.position.x - npcBody.transform.position.x;
         distanceY = playerBody.transform.position.y - npcBody.transform.position.y;
 
