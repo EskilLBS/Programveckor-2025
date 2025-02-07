@@ -12,6 +12,8 @@ public abstract class UnitBase : MonoBehaviour
 
     [SerializeField] protected Slider healthBar;
 
+    [SerializeField] protected float armor;
+
     [SerializeField] protected float maxHealth;
     [HideInInspector] public float health;
 
@@ -37,11 +39,17 @@ public abstract class UnitBase : MonoBehaviour
     // Called when the unit takes damage, can be overwritten if the behaviour should be different than simply losing health
     public virtual void TakeDamage(float amount)
     {
+        Mathf.Clamp(amount -= armor, 0, Mathf.Infinity);
+        if (armor > 0)
+        {
+            armor--;
+        }
+
         health -= amount;
 
         StartCoroutine(SmoothHealthBar());
 
-        if(health <= 0)
+        if (health <= 0)
         {
             Die();
         }

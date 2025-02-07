@@ -485,12 +485,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7d65d5ac7a9d25443ab24a6591447269, type: 2}
   - {fileID: 11400000, guid: 6fcdc5d435e93d5499fef494797087a8, type: 2}
   healthBar: {fileID: 7719551385712583200}
+  armor: 0
   maxHealth: 8
   health: 0
   healthSmoothTime: 0.8
   hasBeenSpared: 0
   sparedLifeRetreatSpeed: 3
-  armor: 0
+  spareThreshold: 2
+  finalBoss: 0
+  moveOnAttack: 0
 --- !u!61 &4705851987654401457
 BoxCollider2D:
   m_ObjectHideFlags: 0

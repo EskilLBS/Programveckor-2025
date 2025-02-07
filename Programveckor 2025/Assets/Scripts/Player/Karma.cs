@@ -77,6 +77,27 @@ public class Karma : MonoBehaviour
 
         if (karma < 0)
         {
+            globalLight.color = colorChangeGradient.Evaluate(intensityMultiplier / -karma);
+            globalLight.intensity = intensityMultiplier / -karma;
+
+            if (globalLight.intensity < 0.3f)
+            {
+                globalLight.intensity = 0.3f;
+            }
+        }
+        else
+        {
+            globalLight.color = colorChangeGradient.Evaluate(1);
+            globalLight.intensity = 1;
+        }
+
+        if(karma > 0)
+        {
+            karmaBar.value = 0;
+        }
+
+        if (karma < 0)
+        {
             karmaBar.value = -karma / maximumEvilness;
         }
     }

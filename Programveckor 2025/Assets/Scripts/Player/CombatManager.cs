@@ -167,9 +167,20 @@ public class CombatManager : MonoBehaviour
             // If there is still a target, meaning it didn't die, check if it's health is 1 or less and then enable the spare button
             if (currentTarget != null)
             {
-                if (currentTarget.health <= 1)
+                if (currentTarget is EnemyUnit enemy)
                 {
-                    spareButton.SetActive(true);
+                    if (enemy.health <= enemy.spareThreshold)
+                    {
+                        spareButton.SetActive(true);
+                    }
+                    else
+                    {
+                        spareButton.SetActive(false);
+                    }
+                }
+                else
+                {
+                    spareButton.SetActive(false);
                 }
             }
 
@@ -181,6 +192,8 @@ public class CombatManager : MonoBehaviour
     // Perform the player turn
     IEnumerator PlayerTurn()
     {
+        
+
         if (enemyCharacters.Count == 0)
         {
             yield break;
@@ -191,6 +204,8 @@ public class CombatManager : MonoBehaviour
         // Set the player attack ui to active and set the correct combat state
         playerAttackUI.SetActive(true);
 
+        
+
         currentCombatState = CombatState.PlayerTurn;
 
         List<PlayerUnit> playersInCombatTemp = new List<PlayerUnit>(playersInCombat);
@@ -198,7 +213,21 @@ public class CombatManager : MonoBehaviour
         // Loop through the players and let them attack
         foreach (PlayerUnit unit in playersInCombatTemp)
         {
-            spareButton.SetActive(false);
+            if (currentTarget is EnemyUnit enemy)
+            {
+                if (enemy.health <= enemy.spareThreshold)
+                {
+                    spareButton.SetActive(true);
+                }
+                else
+                {
+                    spareButton.SetActive(false);
+                }
+            }
+            else
+            {
+                spareButton.SetActive(false);
+            }
 
             if (enemyCharacters.Count == 0)
             {
@@ -226,6 +255,8 @@ public class CombatManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             playerAttackUI.SetActive(true);
+
+            
 
         }
 
@@ -340,9 +371,16 @@ public class CombatManager : MonoBehaviour
 
         // Set the "spareButton" to active if the current targets health is 1 or less, to allow sparing their life
         // otherwise we disable it
-        if (currentTarget.health <= 1)
-        {
-            spareButton.SetActive(true);
+        if (currentTarget is EnemyUnit enemy)
+        { 
+            if(enemy.health <= enemy.spareThreshold)
+            {
+                spareButton.SetActive(true);
+            }
+            else
+            {
+                spareButton.SetActive(false);
+            }
         }
         else
         {
@@ -371,12 +409,15 @@ public class CombatManager : MonoBehaviour
                 SetCurrentTarget(enemyCharacters[0]);
             }
 
-            if (currentTarget.health <= 1)
+            if (currentTarget is EnemyUnit enemy)
             {
-                // Set the enemy state to spared, call the OnSpared functino and then remove them from the enemy list
-                currentTarget.GetComponent<EnemyUnit>().hasBeenSpared = true;
-                currentTarget.GetComponent<EnemyUnit>().OnSpared();
-                RemoveEnemyFromList(currentTarget.GetComponent<EnemyUnit>());
+                if (enemy.health <= enemy.spareThreshold)
+                {
+                    // Set the enemy state to spared, call the OnSpared functino and then remove them from the enemy list
+                    currentTarget.GetComponent<EnemyUnit>().hasBeenSpared = true;
+                    currentTarget.GetComponent<EnemyUnit>().OnSpared();
+                    RemoveEnemyFromList(currentTarget.GetComponent<EnemyUnit>());
+                }
             }
 
             awaitingPlayerInput = false;

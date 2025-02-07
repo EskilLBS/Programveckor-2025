@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e01e93e696d9ac42bff88436bdbb7c0, type: 3}
   m_Name: AmaAttack
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 6
   armorIncrease: 0
   attackName: AmaAttack
+  healAmount: 0
   selfDamage: 0

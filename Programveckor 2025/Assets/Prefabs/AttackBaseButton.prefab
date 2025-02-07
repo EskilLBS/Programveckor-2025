@@ -201,8 +201,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Basic Attack
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5796401ae5f9cbb40b9d042f0a4900d2, type: 2}
-  m_sharedMaterial: {fileID: -6049912479385818852, guid: 5796401ae5f9cbb40b9d042f0a4900d2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a3cc440bef1ba2d469683df512548bb8, type: 2}
+  m_sharedMaterial: {fileID: -7744959200972838188, guid: a3cc440bef1ba2d469683df512548bb8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

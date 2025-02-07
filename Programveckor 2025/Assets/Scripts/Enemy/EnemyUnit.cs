@@ -14,7 +14,7 @@ public class EnemyUnit : UnitBase
     Rigidbody2D rb;
     [SerializeField] float sparedLifeRetreatSpeed;
 
-    [SerializeField] float armor;
+    public float spareThreshold = 1f;
 
     [SerializeField] bool finalBoss;
 
@@ -163,23 +163,6 @@ public class EnemyUnit : UnitBase
         
     }
 
-    public override void TakeDamage(float amount)
-    {
-        Mathf.Clamp(amount -= armor, 0, Mathf.Infinity);
-        if(armor > 0)
-        {
-            armor--;
-        }     
-
-        health -= amount;
-
-        StartCoroutine(SmoothHealthBar());
-
-        if (health <= 0)
-        {
-            Die();
-        }
-    }
 
     // Caleld when you spare the life of an enemty
     public void OnSpared()

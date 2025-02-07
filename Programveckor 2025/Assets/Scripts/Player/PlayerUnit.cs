@@ -20,6 +20,11 @@ public class PlayerUnit : UnitBase
             return;
         }
 
+        if(currentAttack.armorIncrease > 0)
+        {
+            armor += currentAttack.armorIncrease;
+        }
+
         if(currentAttack.selfDamage == true)
         {
             if(Random.Range(0, 4) == 0)

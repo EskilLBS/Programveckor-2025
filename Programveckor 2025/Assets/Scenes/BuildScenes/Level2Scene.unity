@@ -285,6 +285,14 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 5335185108766612232, guid: 9226fcdf6baafaf469eafe6cfccdff0b, type: 3}
+      propertyPath: attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fe1f4310eea86064cb5f0540d61e29a2, type: 2}
+    - target: {fileID: 5335185108766612232, guid: 9226fcdf6baafaf469eafe6cfccdff0b, type: 3}
+      propertyPath: attacks.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: f917893c6e6babb4da3edd0ec1864dba, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -439,6 +447,14 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4310738240841711923, guid: 5014f2abe7318db4490528addcd8c1fc, type: 3}
+      propertyPath: spareThreshold
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4310738240841711923, guid: 5014f2abe7318db4490528addcd8c1fc, type: 3}
+      propertyPath: attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fe1f4310eea86064cb5f0540d61e29a2, type: 2}
     - target: {fileID: 4919237184969704890, guid: 5014f2abe7318db4490528addcd8c1fc, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1031,6 +1047,14 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4310738240841711923, guid: 5014f2abe7318db4490528addcd8c1fc, type: 3}
+      propertyPath: spareThreshold
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4310738240841711923, guid: 5014f2abe7318db4490528addcd8c1fc, type: 3}
+      propertyPath: attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fe1f4310eea86064cb5f0540d61e29a2, type: 2}
     - target: {fileID: 4919237184969704890, guid: 5014f2abe7318db4490528addcd8c1fc, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1072,6 +1096,18 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 7767862824896524095, guid: 5956bde51025cf7488de8fa9b3ba2646, type: 3}
+      propertyPath: spareThreshold
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7767862824896524095, guid: 5956bde51025cf7488de8fa9b3ba2646, type: 3}
+      propertyPath: attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fe1f4310eea86064cb5f0540d61e29a2, type: 2}
+    - target: {fileID: 7767862824896524095, guid: 5956bde51025cf7488de8fa9b3ba2646, type: 3}
+      propertyPath: attacks.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: f917893c6e6babb4da3edd0ec1864dba, type: 2}
     - target: {fileID: 8162366351831290184, guid: 5956bde51025cf7488de8fa9b3ba2646, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1453,6 +1489,14 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6006286196099741984, guid: 69293889542df2c4bae793d17dea6ce4, type: 3}
+      propertyPath: spareThreshold
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6006286196099741984, guid: 69293889542df2c4bae793d17dea6ce4, type: 3}
+      propertyPath: attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fe1f4310eea86064cb5f0540d61e29a2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1721,6 +1765,18 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 5335185108766612232, guid: 9226fcdf6baafaf469eafe6cfccdff0b, type: 3}
+      propertyPath: spareThreshold
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5335185108766612232, guid: 9226fcdf6baafaf469eafe6cfccdff0b, type: 3}
+      propertyPath: attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fe1f4310eea86064cb5f0540d61e29a2, type: 2}
+    - target: {fileID: 5335185108766612232, guid: 9226fcdf6baafaf469eafe6cfccdff0b, type: 3}
+      propertyPath: attacks.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: f917893c6e6babb4da3edd0ec1864dba, type: 2}
     - target: {fileID: 7547311025531070633, guid: 9226fcdf6baafaf469eafe6cfccdff0b, type: 3}
       propertyPath: m_Color.b
       value: 0.62578607
@@ -38751,8 +38807,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6006286196099741984, guid: 69293889542df2c4bae793d17dea6ce4, type: 3}
       propertyPath: maxHealth
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6006286196099741984, guid: 69293889542df2c4bae793d17dea6ce4, type: 3}
+      propertyPath: spareThreshold
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6006286196099741984, guid: 69293889542df2c4bae793d17dea6ce4, type: 3}
+      propertyPath: attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fe1f4310eea86064cb5f0540d61e29a2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38838,6 +38902,14 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6006286196099741984, guid: 69293889542df2c4bae793d17dea6ce4, type: 3}
+      propertyPath: spareThreshold
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6006286196099741984, guid: 69293889542df2c4bae793d17dea6ce4, type: 3}
+      propertyPath: attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fe1f4310eea86064cb5f0540d61e29a2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38931,6 +39003,14 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6006286196099741984, guid: 69293889542df2c4bae793d17dea6ce4, type: 3}
+      propertyPath: spareThreshold
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6006286196099741984, guid: 69293889542df2c4bae793d17dea6ce4, type: 3}
+      propertyPath: attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fe1f4310eea86064cb5f0540d61e29a2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38997,6 +39077,14 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4310738240841711923, guid: 5014f2abe7318db4490528addcd8c1fc, type: 3}
+      propertyPath: spareThreshold
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4310738240841711923, guid: 5014f2abe7318db4490528addcd8c1fc, type: 3}
+      propertyPath: attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fe1f4310eea86064cb5f0540d61e29a2, type: 2}
     - target: {fileID: 4919237184969704890, guid: 5014f2abe7318db4490528addcd8c1fc, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -39779,6 +39867,14 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6006286196099741984, guid: 69293889542df2c4bae793d17dea6ce4, type: 3}
+      propertyPath: spareThreshold
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6006286196099741984, guid: 69293889542df2c4bae793d17dea6ce4, type: 3}
+      propertyPath: attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fe1f4310eea86064cb5f0540d61e29a2, type: 2}
     - target: {fileID: 6701248258691414468, guid: 69293889542df2c4bae793d17dea6ce4, type: 3}
       propertyPath: m_Value
       value: 1

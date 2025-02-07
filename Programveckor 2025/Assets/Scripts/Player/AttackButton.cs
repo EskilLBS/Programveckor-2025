@@ -28,7 +28,13 @@ public class AttackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         if(attack.healAmount > 0)
         {
-            textElement.text = attack.healAmount + " healing";
+            textElement.text = attack.healAmount + " healing to self";
+            return;
+        }
+
+        if(attack.armorIncrease > 0)
+        {
+            textElement.text = attack.armorIncrease + " armor";
             return;
         }
 
